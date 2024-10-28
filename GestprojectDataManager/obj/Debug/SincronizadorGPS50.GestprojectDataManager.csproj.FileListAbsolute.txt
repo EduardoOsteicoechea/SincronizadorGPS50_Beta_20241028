@@ -1,0 +1,6 @@
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\obj\Debug\SincronizadorGPS50.GestprojectDataManager.csproj.AssemblyReference.cache
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\obj\Debug\SincronizadorGPS50.GestprojectDataManager.csproj.CoreCompileInputs.cache
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\obj\Debug\GestprojectDataManager.dll
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\obj\Debug\GestprojectDataManager.pdb
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\bin\Debug\GestprojectDataManager.dll
+C:\Users\eduar\Documents\work\external\avantleap\berrilan\SincronizadorGPS50\GestprojectDataManager\bin\Debug\GestprojectDataManager.pdb

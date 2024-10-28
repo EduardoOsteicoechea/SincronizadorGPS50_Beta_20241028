@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31E51A57-59E2-41E3-9A19-545FBF72A0D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GestprojectDataManager</RootNamespace>
+    <AssemblyName>GestprojectDataManager</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clients\LinkToSageCustomer.cs" />
+    <Compile Include="Clients\ClientSynchronizationTableSchema - Copy.cs" />
+    <Compile Include="Clients\DeleteFromSynchronizationTable.cs" />
+    <Compile Include="Clients\AddSynchronizationTableCustomerData.cs" />
+    <Compile Include="Clients\ClearCustomerSynchronizationData.cs" />
+    <Compile Include="Clients\GetSingleCustomerFromSynchronizationTable.cs" />
+    <Compile Include="Clients\GetClientsFromSynchronizationTable.cs" />
+    <Compile Include="Clients\PopulateGestprojectClientSynchronizationData - Copy.cs" />
+    <Compile Include="Clients\PopulateUnsynchronizedClientRegistrationData.cs" />
+    <Compile Include="Clients\DeleteClientCodeInGestproject.cs" />
+    <Compile Include="Clients\RegisterUpdatedSage50ClientData.cs" />
+    <Compile Include="Clients\RegisterNewSage50ClientData.cs" />
+    <Compile Include="Clients\UpdateClientState.cs" />
+    <Compile Include="Clients\UpdateClientSyncronizationStatus.cs" />
+    <Compile Include="Clients\WasGestprojectClientSynchronized.cs" />
+    <Compile Include="CheckIfTableExistsOnGestproject.cs" />
+    <Compile Include="Clients\CreateClientSynchronizationTable.cs" />
+    <Compile Include="Encryptor.cs" />
+    <Compile Include="GestprojectPAR_TPA.cs" />
+    <Compile Include="GestprojectProviders.cs" />
+    <Compile Include="Providers\1_2_AppendSynchronizationTableDataToProvider.cs" />
+    <Compile Include="Providers\1_1_GestprojectProvidersManager.cs" />
+    <Compile Include="Providers\0_GestprojectProviderModel.cs" />
+    <Compile Include="Clients\GestprojectCustomer.cs" />
+    <Compile Include="GestprojectParticipantModel.cs" />
+    <Compile Include="Clients\GestprojectClientsManager.cs" />
+    <Compile Include="GestprojectParticipants.cs" />
+    <Compile Include="GestprojectUserIdAndDevice.cs" />
+    <Compile Include="IdsAndDeviceTerminalNames.cs" />
+    <Compile Include="ManageRememberableUserData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Clients\CustomerSyncronizationTableSchema.cs" />
+    <Compile Include="Clients\RegisterClient.cs" />
+    <Compile Include="Providers\1_3_WasParticipantRegistered.cs" />
+    <Compile Include="Providers\1_3_WasParticipantSynchronized.cs" />
+    <Compile Include="Providers\1_8_ClearProviderSynchronizationData.cs" />
+    <Compile Include="Providers\1_7_DeleteEntityCodeInGestproject.cs" />
+    <Compile Include="Providers\1_6_DeleteEntityFromSynchronizationTable.cs" />
+    <Compile Include="Providers\1_4_RegisterParticipant.cs" />
+    <Compile Include="Providers\1_5_UpdateParticipantState.cs" />
+    <Compile Include="Providers\2_1_GetProvidersFromSynchronizationTable.cs" />
+    <Compile Include="SynchronizerUserRememberableDataModel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,936 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25E8A40E-2713-403A-AE3C-762BAB892663}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SincronizadorGPS50</RootNamespace>
+    <AssemblyName>SincronizadorGPS50.1.0.3</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics4.Documents.Core.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Core.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.Excel.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Excel.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.IO.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.IO.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.Reports.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Reports.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.TextDocument.CSharp.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.TextDocument.CSharp.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.TextDocument.TSql.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.TextDocument.TSql.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.TextDocument.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.TextDocument.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.TextDocument.VisualBasic.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.TextDocument.VisualBasic.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.Word.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Documents.Word.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Math.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Math.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.Core.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.Core.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataProvider.Adomd.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataProvider.Adomd.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataProvider.Flat.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataProvider.Flat.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataProvider.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataProvider.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataProvider.Xmla.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataProvider.Xmla.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataSource.Flat.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataSource.Flat.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataSource.Mdx.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataSource.Mdx.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataSource.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataSource.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Olap.DataSource.Xmla.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Olap.DataSource.Xmla.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Shared.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Shared.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Undo.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Undo.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.AppStylistSupport.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.AppStylistSupport.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.Barcode.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.Barcode.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.Shared.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.Shared.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.UltraDataChart.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.UltraDataChart.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.UltraGauges.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.UltraGauges.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.UltraGeographicMap.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.UltraGeographicMap.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.DataVisualization.UltraSparkline.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.DataVisualization.UltraSparkline.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.Misc.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.Misc.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.Portable.Core.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.Portable.Core.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.SupportDialogs.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.SupportDialogs.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraChart.v18.2.Design, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraChart.v18.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraGauge.v18.2.Design, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraGauge.v18.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinCalcManager.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinCalcManager.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinCalcManager.v18.2.FormulaBuilder, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinCalcManager.v18.2.FormulaBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinCarousel.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinCarousel.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinChart.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinChart.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinDataSource.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinDataSource.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinDock.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinDock.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinEditors.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinEditors.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinExplorerBar.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinExplorerBar.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinFormattedText.WordWriter.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinFormattedText.WordWriter.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGanttView.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGanttView.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGauge.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGauge.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGrid.DocumentExport.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.DocumentExport.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGrid.ExcelExport.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.ExcelExport.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGrid.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinGrid.WordWriter.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinGrid.WordWriter.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinInkProvider.Ink17.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinInkProvider.Ink17.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinListBar.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinListBar.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinListView.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinListView.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinLiveTileView.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinLiveTileView.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinMaskedEdit.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinMaskedEdit.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinOfficeNavBar.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinOfficeNavBar.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinPivotGrid.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinPivotGrid.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinPrintPreviewDialog.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinPrintPreviewDialog.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinRadialMenu.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinRadialMenu.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinSchedule.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinSchedule.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinSpellChecker.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinSpellChecker.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinSpreadsheet.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinSpreadsheet.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinStatusBar.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinStatusBar.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinTabbedMdi.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinTabControl.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinTabControl.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinToolbars.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinToolbars.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.UltraWinTree.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinTree.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.v18.2, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Win.v18.2.Design, Version=18.2.20182.130, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Infragistics\2018.2\Windows Forms\CLR4.0\Bin\Infragistics4.Win.v18.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="sage.50, Version=50.7840.1.0, Culture=neutral, PublicKeyToken=96ae376547cf7c42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Sage50_8\Sage50Term\50.7830.0\sage.50.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sage.ew.db, Version=50.7840.1.0, Culture=neutral, PublicKeyToken=96ae376547cf7c42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Sage50_8\Sage50Term\50.7830.0\sage.ew.db.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sage.ew.images, Version=50.7840.1.0, Culture=neutral, PublicKeyToken=96ae376547cf7c42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Sage50_8\Sage50Term\50.7830.0\sage.ew.images.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sage.ew.lic, Version=50.7840.1.0, Culture=neutral, PublicKeyToken=96ae376547cf7c42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Sage50_8\Sage50Term\50.7830.0\sage.ew.lic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sage.ew.reports, Version=50.7840.1.0, Culture=neutral, PublicKeyToken=96ae376547cf7c42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Sage50_8\Sage50Term\50.7830.0\sage.ew.reports.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="2_CompaniesSynchronization\CompaniesDataTableManager.cs" />
+    <Compile Include="2_CompaniesSynchronization\CompaniesSynchronizer.cs" />
+    <Compile Include="2_CompaniesSynchronization\SynchronizableCompanyModel.cs" />
+    <Compile Include="2_CompaniesSynchronization\CompaniesSynchronizationManager.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy 20241028.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\3_TaxesSynchronizer - Copy 20241028.cs" />
+    <Compile Include="6_TaxesSynchronization\SynchronizableTaxModel.cs" />
+    <Compile Include="7_ProvidersSynchronization\ProvidersSynchronizer.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\1_ProvidersDataTableManager - Copy - 20241028.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\3_ProvidersSynchronizer - Copy %282%29.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\UnexsistingProvidersSynchronizationWorkflow - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\SynchronizableProviderModel.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\3_ProvidersSynchronizer - Copy 20241011.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\1_ProvidersDataTableManager - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\2_GestprojectProvidersProcessor - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\3_ProvidersSynchronizer - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\ProviderBussinessClass.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\CreateSage50Provider - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\_ProvidersSynchronizer - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\ProvidersSynchronizationTableSchemaProvider - Copy.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\ProjectsSynchronizer - Copy.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\ProjectsDataTableManager - Copy.cs" />
+    <Compile Include="4_ProjectsSynchronization\SynchronizableProjectModel.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\3_ProjectsSynchronizer - Copy.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntityProviders\GetSage50Projects.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\ProjectComparer.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\UpdateSage50Project.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\_UnexsistingProjectListWorkflow.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\2_GestprojectTaxesProcessor - Copy.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\3_TaxesSynchronizer - Copy.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy %282%29.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\TaxSynchronizationWorkflow - Copy.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\1_SubaccountableAccountsDataTableManager.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\2_GestprojectSubaccountableAccountsProcessor.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GestprojectSubaccountableAccountsManager - Copy.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GetGestprojectSubaccountableAccounts.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GestprojectSubaccountableAccountsProvider.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GetSage50SubaccountableAccounts.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\AppendSynchronizationIdToEntity.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\AppendGestprojectSubaccountableAccountTableId.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\AppendSubaccountableAccountSynchronizationData.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\GetGestprojectSubaccountableAccountTableSubaccountableAccounts.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\InsertSageEntityIntoGestprojectSubaccountableAccountTable - Copy.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\DeleteSubaccountableAccountTemporalRegistry.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\InsertSubaccountableAccount.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\3_SubaccountableAccountSynchronizer.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\SubaccountableAccountSynchronizationWorkflow.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\UpdateGestprojectSubaccountableAccountDataWithSageData.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\UpdateSubaccountableAccount.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityValidators\ValidateSubaccountableAccountsSyncronizationStatus.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\EntityValidators\_WasSubaccountableAccountsRegistered.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\Schema\GestprojectSubaccountableAccountModel.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\Schema\Sage50SubaccountableAccountModel.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\Schema\SubaccountableAccountsSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\_SubaccountableAccountsSynchronizationManager.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\3_IssuedBillsSynchronizer - Copy.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoiceProxy.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\SalesAlbaran - Copy.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\SalesAlbaranModel.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\SynchronizableIssuedInvoiceDetailModel.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoicesDetailsSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\1_IssuedBillsDataTableManager - Copy %282%29.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\CreateSalesAlbaran.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\_IssuedBillsSynchronizer - Copy.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\_IssuedBillsSynchronizer - Copy.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - Copy %284%29.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - Copy %283%29.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\SageReceivedInvoiceEnrichedModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\SageReceivedInvoiceBaseModelTaxModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\SincronizadorGP50ReceivedInvoiceModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\ReceivedBillsSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\ReceivedBillsDetailsSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\SincronizadorGP50ReceivedInvoiceDetailModel.cs" />
+    <Compile Include="2_CompaniesSynchronization\SageCompanyModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - Copy %282%29.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - 20241016.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - 20241017.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\1_ReceivedBillsDataTableManager - Copy.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\ReceivedInvoiceDetailModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\ReceivedInvoiceModel.cs" />
+    <Compile Include="ConfirmationDialog.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\ExsistingTaxListWorkflow - Copy.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\GetGestprojectTaxTableTaxes.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\InsertTax.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\AppendGestprojectTaxTableIdToSynchronizationTable.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\AppendSynchronizationDataToEntityRegistry.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\InsertSageEntityIntoGestprojectTaxTable.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\UpdateGestprojectTaxDataWithSageTaxData.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\UpdateTax.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\BaseDocument.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\BuyDocument.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\CreateSage50ReceivedBills - Copy %282%29.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\CreateSage50ReceivedBills - Copy.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\SalesDocument - Copy.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\SalesDocument.cs" />
+    <Compile Include="_Dependency\Interface\IEntitySynchronizer - Copy.cs" />
+    <Compile Include="_Dependency\Interface\IGridDataSourceGenerator - Copy.cs" />
+    <Compile Include="_Global\IdsToBeSelected.cs" />
+    <Compile Include="_Global\_DevelopmentHelpers\VisualizationForm.cs" />
+    <Compile Include="_Global\_DevelopmentHelpers\VisualizeData.cs" />
+    <Compile Include="_Global\_DevelopmentHelpers\VisualizePropertiesAndValues.cs" />
+    <Compile Include="_Global\_Log\DeadEndException.cs" />
+    <Compile Include="_TypeSafety\FilterSelectQueryResult.cs" />
+    <Compile Include="_Global\_UI\MainWindow\ManageMainWindowActions.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\1_5_ManageUserInteractionWithUI - Copy.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\ManageUserInteractionWithUI.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_1_CustomerSynchronizationDataTable - Copy.cs" />
+    <Compile Include="3_ClientsSynchronization\3_0_RunSynchronizeCustomersWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\3_6_LinkClientWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\3_1_UnexsistingClientListWorkflow - Copy.cs" />
+    <Compile Include="3_ClientsSynchronization\3_5_UpdateClientWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\3_4_CreateClientWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\3_3_AksIfDuplicationOrUpdateIsDesired.cs" />
+    <Compile Include="3_ClientsSynchronization\3_2_ExsistingClientListWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\3_1_UnexsistingClientListWorkflow.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\ClientSynchronizationTable - Copy.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_CreateSage50Customer - Copy.cs" />
+    <Compile Include="3_ClientsSynchronization\2_4_AddClientToUITable.cs" />
+    <Compile Include="3_ClientsSynchronization\2_3_ValidateClientSyncronizationStatus.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\ReceivedBillsDataTableManager.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\_prev\2_GestprojectReceivedBillsProcessor.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntityProviders\GestprojectReceivedBillsManager.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntityProviders\GestprojectReceivedBillsProvider.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntityProviders\GetSage50ReceivedBills.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\3_3_ExsistingReceivedBillsListWorkflow.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\3_4_CreateReceivedBillWorkflow.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\3_4_UpdateReceivedBillWorkflow.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\CreateSage50ReceivedBills.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\ReceivedBillsSynchronizer.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntitySynchronizers\LinkReceivedBillWorkflow.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntityValidators\ValidateReceivedBillSyncronizationStatus.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\EntityValidators\WasReceivedBillRegistered.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\GestprojectReceivedBillModel.cs" />
+    <Compile Include="2_CompaniesSynchronization\CompaniesSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\Schema\Sage50ReceivedBillModel.cs" />
+    <Compile Include="9_ReceivedBillsSynchronization\ReceivedInvoicesSynchronizationManager.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoicesDataTableManager.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\2_GestprojectIssuedBillsProcessor.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntityProviders\GestprojectIssuedBillsManager.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntityProviders\GestprojectIssuedBillsProvider.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntityProviders\GetSage50IssuedBills.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\3_3_ExsistingIssuedBillsListWorkflow.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\3_4_CreateIssuedBillWorkflow.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\3_4_UpdateIssuedBillWorkflow.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\CreateSage50IssuedBills.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntitySynchronizers\LinkIssuedBillWorkflow.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoicesSynchronizer.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntityValidators\ValidateIssuedBillSyncronizationStatus.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\_prev\EntityValidators\WasIssuedBillRegistered.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\SynchronizableIssuedInvoiceModel.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\Sage50IssuedBillModel.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoicesSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="8_IssuedBillsSynchronization\IssuedInvoicesSynchronizationManager.cs" />
+    <Compile Include="6_TaxesSynchronization\TaxesDataTableManager.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\2_GestprojectTaxesProcessor 20241028.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntityProviders\GestprojectTaxesManager.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntityProviders\GestprojectTaxesProvider.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntityProviders\GetSage50Taxes.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\TaxSynchronizationWorkflow.cs" />
+    <Compile Include="6_TaxesSynchronization\TaxesSynchronizer.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntityValidators\ValidateTaxSyncronizationStatus.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\EntityValidators\WasTaxRegistered.cs" />
+    <Compile Include="6_TaxesSynchronization\_prev\Schema\GestprojectTaxModel.cs" />
+    <Compile Include="6_TaxesSynchronization\TaxesSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="6_TaxesSynchronization\Sage50TaxModel.cs" />
+    <Compile Include="6_TaxesSynchronization\TaxesSynchronizationManager.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntityValidators\ValidateProjectSyncronizationStatus.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\GestprojectProjectsProcessor.cs" />
+    <Compile Include="_Dependency\Interface\IEntitySynchronizationManager.cs" />
+    <Compile Include="_Dependency\Delegate\GestprojectEntityProviderDelegate.cs" />
+    <Compile Include="_EntityEditors\RegisterEntity.cs" />
+    <Compile Include="_EntityEditors\UpdateEntity.cs" />
+    <Compile Include="_EntityEditors\DeleteEntityFromSynchronizationTable.cs" />
+    <Compile Include="_EntityEditors\ClearEntityDataInGestproject.cs" />
+    <Compile Include="_EntityEditors\ClearEntitySynchronizationData.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\CreateSage50Provider.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\RegisterNewSage50EntityData.cs" />
+    <Compile Include="_TypeSafety\DualConditionGenerator.cs" />
+    <Compile Include="_TypeSafety\TypeRevisor.cs" />
+    <Compile Include="__prev\_prev_3\ValidateProviderSyncronizationStatus - Copy.cs" />
+    <Compile Include="_EntityValidators\WasEntityRegistered.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GetSage50Providers.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\Schema\GestprojectProviderModel.cs" />
+    <Compile Include="7_ProvidersSynchronization\ProvidersSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="_EntityEditors\EntitySynchronizationTable.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectProvidersManager.cs" />
+    <Compile Include="_Global\_DataTable\SyncrhonizationDataTableGenerator.cs" />
+    <Compile Include="7_ProvidersSynchronization\ProvidersDataTableManager.cs" />
+    <Compile Include="_Global\_DatabaseTable\EntitySyncronizationTableStatusManager.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\ValidateProviderSyncronizationStatus.cs" />
+    <Compile Include="__prev\_prev_3\GestprojectProvidersProcessor - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\2_GestprojectProvidersProcessor.cs" />
+    <Compile Include="__prev\_prev_3\3_1_ProvidersSynchronizer - Copy.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\3_ProvidersSynchronizer.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\3_3_ExsistingProviderListWorkflow.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\UnexsistingProvidersSynchronizationWorkflow.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\3_4_CreateProviderWorkflow.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\LinkProviderWorkflow.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntitySynchronizers\3_4_UpdateProviderWorkflow.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectParticipants.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectProviders.cs" />
+    <Compile Include="4_ProjectsSynchronization\ProjectsDataTableManager.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntityProviders\GestprojectProjectsProvider.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntityProviders\GestprojectProjectsManager.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntityProviders\GetSage50Projects2.cs" />
+    <Compile Include="4_ProjectsSynchronization\ProjectsSynchronizer.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\_ExsistingProviderListWorkflow.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\_CreateProjectWorkflow.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\_UpdateProjectWorkflow.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\CreateSage50Project.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\EntitySynchronizers\LinkEntityWorkflow.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\Schema\GestprojectProjectModel.cs" />
+    <Compile Include="_TypeSafety\DynamicValuesFormatters.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\0_TabLauncher.cs" />
+    <Compile Include="_Dependency\Interface\ISynchronizationModel.cs" />
+    <Compile Include="4_ProjectsSynchronization\_prev\Schema\Sage50ProjectModel.cs" />
+    <Compile Include="4_ProjectsSynchronization\ProjectsSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="_Global\_DataTable\EntityPainter.cs" />
+    <Compile Include="7_ProvidersSynchronization\Sage50ProviderModel.cs" />
+    <Compile Include="4_ProjectsSynchronization\ProjectsSynchronizationManager.cs" />
+    <Compile Include="_Global\_Connectors\GestprojectConnectionProvider.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\Schema\GestprojectParticipantModel.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\Sage50Entities.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectEntitiesProvider.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectEntities.cs" />
+    <Compile Include="_Global\_Connectors\Sage50ConnectionProvider.cs" />
+    <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\Sage50ProvidersProvider.cs" />
+    <Compile Include="_TypeSafety\TypeProtector.cs" />
+    <Compile Include="_Dependency\Delegate\DataTableDelegate.cs" />
+    <Compile Include="_Dependency\Interface\IDataTableGenerator.cs" />
+    <Compile Include="_Dependency\Interface\IEntityCreationWorkflow.cs" />
+    <Compile Include="_Dependency\Interface\IEntityLinkWorkflow.cs" />
+    <Compile Include="_Dependency\Interface\IEntitySynchronizer.cs" />
+    <Compile Include="_Dependency\Interface\IGestprojectEntitiesProvider.cs" />
+    <Compile Include="_Dependency\Interface\IGridDataSourceGenerator.cs" />
+    <Compile Include="_Dependency\Interface\IProvidersSynchronizationTableSchemaProvider.cs" />
+    <Compile Include="_Dependency\Interface\ISage50EntitiesProvider.cs" />
+    <Compile Include="_Dependency\Interface\ISynchronizableEntityPainter.cs" />
+    <Compile Include="_Dependency\Interface\ISynchronizableEntityProcessor.cs" />
+    <Compile Include="_Dependency\Interface\ISynchronizationDatabaseTableManager.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageLayoutPanelRowGenerator.cs" />
+    <Compile Include="_Dependency\Interface\IUnexsistingEntitySynchronizationWorkflow.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\SynchronizationTabGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\TabPageMainPanelTableLayoutPanelGenerator.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageMainPanelTableLayoutPanelGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\BottomRowControlsGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\MiddleRowControlsGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\TopRowControlsGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\TabPageLayoutPanelRowGenerator.cs" />
+    <Compile Include="7_ProvidersSynchronization\ProviderSynchronizationManager.cs" />
+    <Compile Include="_Global\_Log\ApplicationLogger.cs" />
+    <Compile Include="_Global\_DataHolders\UI\ClientsUIHolder.cs" />
+    <Compile Include="_Global\_DataHolders\DataHolder.cs" />
+    <Compile Include="_Global\_DataHolders\UI\Sage50ConnectionUIHolder.cs" />
+    <Compile Include="_Global\_DataHolders\Sage50DataHolder.cs" />
+    <Compile Include="_Global\_DataHolders\GestprojectDataHolder.cs" />
+    <Compile Include="_Global\_DataHolders\UI\MainWindowUIHolder.cs" />
+    <Compile Include="_Global\_DataHolders\UI\StyleHolder.cs" />
+    <Compile Include="__prev\GestprojectAPI\1_ConnectToGestprojectDatabase .cs" />
+    <Compile Include="_Global\_UI\MainWindow\ManageApplicationGlobalStyles.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="3_ClientsSynchronization\_ClientSynchronizationManager.cs" />
+    <Compile Include="1_SetupAndConnections\1_1_SetWindowsFormsApplicationSettings.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_UpdateSage50Customer.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_CreateSage50Customer.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_CheckEndPointsDataConformity.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_IsGestprojectClientSynchronized.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_IsGestprojectClientRegistered.cs" />
+    <Compile Include="__prev\GestprojectAPI\GetRegisteredClients.cs" />
+    <Compile Include="__prev\GestprojectAPI\RecordSage50ClientCodeInGestproject.cs" />
+    <Compile Include="__prev\GestprojectAPI\AddAccountableSubacountValueToClient.cs" />
+    <Compile Include="__prev\GestprojectAPI\CheckIfGestprojectClientIsSynchronized.cs" />
+    <Compile Include="__prev\GestprojectAPI\IsClientUpToDateWithSage50.cs" />
+    <Compile Include="__prev\GestprojectAPI\IsClientUpToDateWithLastGestProjectRecord.cs" />
+    <Compile Include="__prev\GestprojectAPI\CheckIfGestprojectClientWasRegistered.cs" />
+    <Compile Include="__prev\GestprojectAPI\ConnectToGestprojectDatabase.cs" />
+    <Compile Include="__prev\GestprojectAPI\CreateGestprojectSynchronizationImageTable.cs" />
+    <Compile Include="__prev\GestprojectAPI\GestprojectClientsActions.cs" />
+    <Compile Include="__prev\GestprojectAPI\CheckIfGestprojectClientWasSynchronized.cs" />
+    <Compile Include="__prev\GestprojectAPI\GetGestprojectClients.cs" />
+    <Compile Include="__prev\GestprojectAPI\GetGestprojectClientSynchronizationId.cs" />
+    <Compile Include="__prev\GestprojectAPI\GetGestprojectParticipants.cs" />
+    <Compile Include="__prev\GestprojectAPI\RegisterClient - Copy.cs" />
+    <Compile Include="__prev\GestprojectAPI\UpdateClient.cs" />
+    <Compile Include="__prev\GestprojectAPI\UpdateClientSynchronizationStatus.cs" />
+    <Compile Include="__prev\GestprojectAPI\WriteSingleRecordInNewClientsSincronizationTable.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\GetSage50Clients.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\3_SynchronizationTable - Copy.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\8_BottomRowSynchronizeAllButtonEvents.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\8_BottomRowSynchronizeFilteredButtonEvents.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\8_TopRowSinchronizeSelectedButtonEvents.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_Client_model.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_ColumnsFilter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="3_ClientsSynchronization\2_1_CustomerSynchronizationDataTable.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\SynchronizationTableUIActions.cs" />
+    <Compile Include="3_ClientsSynchronization\1_2_CreateBottomRowUI.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_Error_models.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_SynchronizationTableDelegate.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\3_AddClientToSyncronizationUITable.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\2_GestprojectClients.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\3_GetSelectedClientsInUITable.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\4_PopulateGestprojectClientSynchronizationData.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\8_RemoveClientsSynchronizationTable.cs" />
+    <Compile Include="3_ClientsSynchronization\1_4_CreateTopRowUI.cs" />
+    <Compile Include="3_ClientsSynchronization\1_3_CreateCenterRowUI.cs" />
+    <Compile Include="3_ClientsSynchronization\1_1_CreateCustomersTabPageUI.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\5_SynchronizeClients.cs" />
+    <Compile Include="3_ClientsSynchronization\2_2_CreateTableControl.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_SyncronizationStatusOptions.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\8_TopRowRefreshTableButtonEvents.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\4_UpdateRegisteredClientModelData.cs" />
+    <Compile Include="3_ClientsSynchronization\prev\9_SyncronizationTableModel.cs" />
+    <Compile Include="1_SetupAndConnections\_SetupAndConnections.cs" />
+    <Compile Include="_Global\_UI\MainWindow\GenerateMainWindowUI.cs" />
+    <Compile Include="1_SetupAndConnections\4_1_GenerateCenterRowUI.cs" />
+    <Compile Include="_Global\_UI\MainWindow\GenerateMainWindow.cs" />
+    <Compile Include="1_SetupAndConnections\3_1_GenerateSage50ConnectionTabUI.cs" />
+    <Compile Include="1_SetupAndConnections\9_ISage50ConnectionUIComponent.cs" />
+    <Compile Include="1_SetupAndConnections\9_StateManager.cs" />
+    <Compile Include="1_SetupAndConnections\5_2_ShowConnectionStatePanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_6_RememberAllDataPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_7_ConnectPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_4_ValidateTerminalUserDataPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_5_ManageCompanyGroupOptionsPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_3_GetLocalTerminalUserDataPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_8_ManageConnectionPanel.cs" />
+    <Compile Include="1_SetupAndConnections\5_1_Sage50ConnectionUIManager.cs" />
+    <Compile Include="_Dependency\Interface\IGestprojectConnectionProvider.cs" />
+    <Compile Include="_Dependency\Interface\ISage50ConnectionProvider.cs" />
+    <Compile Include="_Dependency\Interface\ISynchronizationTableSchemaProvider.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageLayoutPanelBottomRowControlsGenerator.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageLayoutPanelMiddleRowControlsGenerator.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageGenerator.cs" />
+    <Compile Include="_Dependency\Interface\ITabPageLayoutPanelTopRowControlsGenerator.cs" />
+    <Compile Include="_Global\_UI\SynchronizationTabs\1_UIFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\Excel_Open.ico" />
+    <None Include="Resources\Delete_16.ICO" />
+    <None Include="Resources\appicon.ico" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Vista preliminar.png" />
+    <None Include="Resources\Semaforo verde.png" />
+    <None Include="Resources\SemaforoRojo.png" />
+    <None Include="Resources\Salir.png" />
+    <None Include="Resources\sage_logo_500x300.png" />
+    <None Include="Resources\sage_logo_500x240.png" />
+    <None Include="Resources\sage_logo_500x226.png" />
+    <None Include="Resources\prl_elemento_riesgo.png" />
+    <None Include="Resources\loading_spinner_2.gif" />
+    <None Include="Resources\loading_spinner_1.gif" />
+    <None Include="Resources\Informacion.png" />
+    <None Include="Resources\gestproject_logo.png" />
+    <None Include="Resources\Folder yellow arrow up48.png" />
+    <None Include="Resources\Folder yellow arrow up.png" />
+    <None Include="Resources\Expandir.png" />
+    <None Include="Resources\Excel_Save_Selection.png" />
+    <None Include="Resources\Excel_Save.png" />
+    <None Include="Resources\Excel_Open.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Eliminar.png" />
+    <None Include="Resources\Deshacer.png" />
+    <None Include="Resources\delete1.png" />
+    <None Include="Resources\Delete_16.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\Contexto actual.png" />
+    <None Include="Resources\Confirmation.png" />
+    <None Include="Resources\Cerrar.png" />
+    <None Include="Resources\Annadir.png" />
+    <None Include="Resources\ajax-loader.gif" />
+    <None Include="Resources\SuccessRedDot.bmp" />
+    <None Include="Resources\SuccessGreenDot.bmp" />
+    <None Include="Resources\ApplicationIcon.bmp" />
+    <None Include="Resources\applicationIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="7_ProvidersSynchronization\_prev\EntityValidators\" />
+    <Folder Include="8_IssuedBillsSynchronization\_prev\Schema\" />
+    <Folder Include="_Global\_UI\ConnectionTab\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Styles\Aero.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Chameleon.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Claymation.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Excel2013 - Dark Gray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Excel2013 - Light Gray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Excel2013 - White.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\GrapeTomato.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\IG.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\LucidDream.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Metro.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\ModClay.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Nautilus.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\NoirModerne.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2007Black.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2007Blue.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2007Silver.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2010Black.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2010Blue.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2010Silver.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2013 - Dark Gray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2013 - Light Gray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Office2013 - White.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Outlook2013 - Dark Gray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Outlook2013 - LightGray.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Outlook2013 - White.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Pear.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\RedPlanet.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\RubberBlack.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Trendy.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\VS2008.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\VS2010.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\VS2013 - Blue.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\VS2013 - Dark.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\VS2013 - Light.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Windows7.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Windows8-DarkGray-Blue.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Windows8-DarkGray-Green.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Windows8-DarkGray-Pink.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Styles\Windows8-DarkGray-Yellow.isl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GestprojectConnector\SincronizadorGPS50.GestprojectConnector.csproj">
+      <Project>{e1d68abe-ce53-4d58-8d9e-fe116ecde711}</Project>
+      <Name>SincronizadorGPS50.GestprojectConnector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestprojectDataManager\SincronizadorGPS50.GestprojectDataManager.csproj">
+      <Project>{31e51a57-59e2-41e3-9a19-545fbf72a0d1}</Project>
+      <Name>SincronizadorGPS50.GestprojectDataManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sage50ConnectionManager\SincronizadorGPS50.Sage50Connector.csproj">
+      <Project>{ed0700f7-4cc0-4431-b9c8-f04f1fb75eae}</Project>
+      <Name>SincronizadorGPS50.Sage50Connector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
