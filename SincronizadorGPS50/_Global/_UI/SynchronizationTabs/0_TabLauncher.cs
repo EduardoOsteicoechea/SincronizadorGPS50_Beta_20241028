@@ -14,8 +14,10 @@ namespace SincronizadorGPS50
 			   new CompaniesSynchronizationManager()
             .Launch( gestprojectConnectionManager, sage50ConnectionManager, MainWindowUIHolder.CompaniesTab );
 
-			   new ClientSynchronizationManager()
-            .Launch( GestprojectDataHolder.GestprojectDatabaseConnection,sage50ConnectionManager.CompanyGroupData,MainWindowUIHolder.CustomersTab );
+			   //new ClientSynchronizationManager()
+      //      .Launch( GestprojectDataHolder.GestprojectDatabaseConnection,sage50ConnectionManager.CompanyGroupData,MainWindowUIHolder.CustomersTab );
+
+            new CustomersSynchronizationManager().Launch(gestprojectConnectionManager, sage50ConnectionManager, MainWindowUIHolder.CustomersTab);
 
 			   new ProviderSynchronizationManager()
             .Launch( gestprojectConnectionManager, sage50ConnectionManager, MainWindowUIHolder.ProvidersTab );

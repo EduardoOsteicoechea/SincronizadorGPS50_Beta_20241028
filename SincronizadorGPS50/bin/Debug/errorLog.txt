@@ -20405,3 +20405,136 @@ Message: The parameterized query '(@IMP_ID nvarchar(4000),@IMP_TIPO nvarchar(3),
 
 
 --------------------------------------------------
+Date: 2024-10-28 17:54:37.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GestprojectHasCustomers:
+
+ExecuteReader requiere una Connection abierta y disponible. El estado actual de la conexión es cerrada..
+Short Description: Failed to end the methods execution successfully..
+Message: ExecuteReader requiere una Connection abierta y disponible. El estado actual de la conexión es cerrada.
+
+
+--------------------------------------------------
+Date: 2024-10-28 17:54:41.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GenerateDataTable:
+
+At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GestprojectHasCustomers:
+
+ExecuteReader requiere una Connection abierta y disponible. El estado actual de la conexión es cerrada..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GestprojectHasCustomers:
+
+ExecuteReader requiere una Connection abierta y disponible. El estado actual de la conexión es cerrada.
+
+
+--------------------------------------------------
+Date: 2024-10-28 17:55:44.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GestprojectHasCustomers:
+
+Invalid column name 'guid_id'..
+Short Description: Failed to end the methods execution successfully..
+Message: Invalid column name 'guid_id'.
+
+
+--------------------------------------------------
+Date: 2024-10-28 17:56:09.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GetGestprojectEntities:
+
+Invalid column name 'NOMBRE_COMPLETO'..
+Short Description: Failed to end the methods execution successfully..
+Message: Invalid column name 'NOMBRE_COMPLETO'.
+
+
+--------------------------------------------------
+Date: 2024-10-28 17:58:28.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GetGestprojectEntities:
+
+entity.PAR_ID.
+Short Description: Failed to end the methods execution successfully..
+Message: entity.PAR_ID
+
+
+--------------------------------------------------
+Date: 2024-10-28 17:59:35.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.RegisterEntityOnSynchronizationTable:
+
+The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied..
+Short Description: Failed to end the methods execution successfully..
+Message: The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied.
+
+
+--------------------------------------------------
+Date: 2024-10-28 18:01:45.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.RegisterEntityOnSynchronizationTable:
+
+The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied..
+Short Description: Failed to end the methods execution successfully..
+Message: The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied.
+
+
+--------------------------------------------------
+Date: 2024-10-28 18:02:48.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.RegisterEntityOnSynchronizationTable:
+
+The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied..
+Short Description: Failed to end the methods execution successfully..
+Message: The parameterized query '(@SYNC_STATUS nvarchar(14),@PAR_ID int,@PAR_SUBCTA_CONTABLE nvar' expects the parameter '@PAR_SUBCTA_CONTABLE', which was not supplied.
+
+
+--------------------------------------------------
+Date: 2024-10-28 18:21:44.
+Location: At:
+
+SincronizadorGPS50
+.CustomersDataTableManager
+.GetGestprojectIdsFromPAR_TPAtable:
+
+Incorrect syntax near the keyword 'IN'.
+Unclosed quotation mark after the character string 'System.Nullable`1[System.Int32]
+            ;'..
+Short Description: Failed to end the methods execution successfully..
+Message: Incorrect syntax near the keyword 'IN'.
+Unclosed quotation mark after the character string 'System.Nullable`1[System.Int32]
+            ;'.
+
+
+--------------------------------------------------

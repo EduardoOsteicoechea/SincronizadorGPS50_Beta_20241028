@@ -19,10 +19,10 @@ namespace SincronizadorGPS50
       {
          /*0*/("PAR_ID", "Id en Gestproject", typeof(int), "INT", null),
          /*1*/("PAR_SUBCTA_CONTABLE_2", "Subcuenta contable", typeof(string), "VARCHAR(MAX)", string.Empty),
-         /*2*/("PAR_NOMBRE", "Nombre simple", typeof(string), "VARCHAR(MAX)", string.Empty),
+         /*2*/("PAR_NOMBRE", "Nombre", typeof(string), "VARCHAR(MAX)", string.Empty),
          /*3*/("PAR_APELLIDO_1", "Apellido 1", typeof(string), "VARCHAR(MAX)", string.Empty),
          /*4*/("PAR_APELLIDO_2", "Apellido 2", typeof(string), "VARCHAR(MAX)", string.Empty),
-         /*5*/("NOMBRE_COMPLETO", "Nombre", typeof(string), "VARCHAR(MAX)", string.Empty),
+         /*5*/("NOMBRE_COMPLETO", "Nombre completo", typeof(string), "VARCHAR(MAX)", string.Empty),
          /*6*/("PAR_NOMBRE_COMERCIAL", "Nombre comercial", typeof(string), "VARCHAR(MAX)", string.Empty),
          /*7*/("PAR_CIF_NIF", "CIF - NIF", typeof(string), "VARCHAR(MAX)", string.Empty),
          /*8*/("PAR_DIRECCION_1", "Dirección", typeof(string), "VARCHAR(MAX)", string.Empty),
