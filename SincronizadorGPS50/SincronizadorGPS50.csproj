@@ -388,6 +388,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="0_Setup\MainWindow.cs" />
+    <Compile Include="1_Connection\ConnectionTab.cs" />
     <Compile Include="2_CompaniesSynchronization\CompaniesDataTableManager.cs" />
     <Compile Include="2_CompaniesSynchronization\CompaniesSynchronizer.cs" />
     <Compile Include="2_CompaniesSynchronization\SynchronizableCompanyModel.cs" />
@@ -401,6 +403,8 @@
     <Compile Include="3_Customers\SageCustomerModel.cs" />
     <Compile Include="3_Customers\GestprojectCustomerModel.cs" />
     <Compile Include="3_Customers\SynchronizableCustomerModel.cs" />
+    <Compile Include="4_ProjectsSynchronization\ProjectEntityForSageCreation.cs" />
+    <Compile Include="4_ProjectsSynchronization\SageProjectBussinessClass.cs" />
     <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy 20241028.cs" />
     <Compile Include="6_TaxesSynchronization\_prev\3_TaxesSynchronizer - Copy 20241028.cs" />
     <Compile Include="6_TaxesSynchronization\SynchronizableTaxModel.cs" />
@@ -497,6 +501,18 @@
     <Compile Include="_Dependency\Interface\IGridDataSourceGenerator - Copy.cs" />
     <Compile Include="_Global\BaseMaster.cs" />
     <Compile Include="_Global\IdsToBeSelected.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\ConnectionDataHolder.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\Encryptor.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\GestprojectConnectionProvider.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\GestprojectLocalDeviceUserData.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\GestprojectSessionSettings.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\GestprojectSessionSettingsManager.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\LocalDeviceUserData.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\ManageUserRememberableData.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\MySerializationBinder.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\Serializer.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\UserSessionData.cs" />
+    <Compile Include="_Global\_DevelopmentHelpers\GetLatestVersionFolderName.cs" />
     <Compile Include="_Global\_DevelopmentHelpers\VisualizationForm.cs" />
     <Compile Include="_Global\_DevelopmentHelpers\VisualizeData.cs" />
     <Compile Include="_Global\_DevelopmentHelpers\VisualizePropertiesAndValues.cs" />
@@ -619,12 +635,12 @@
     <Compile Include="_Global\_DataTable\EntityPainter.cs" />
     <Compile Include="7_ProvidersSynchronization\Sage50ProviderModel.cs" />
     <Compile Include="4_ProjectsSynchronization\ProjectsSynchronizationManager.cs" />
-    <Compile Include="_Global\_Connectors\GestprojectConnectionProvider.cs" />
+    <Compile Include="_Global\_Connectors\Gestproject\GestprojectConnectionProvider2.cs" />
     <Compile Include="7_ProvidersSynchronization\_prev\Schema\GestprojectParticipantModel.cs" />
     <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\Sage50Entities.cs" />
     <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectEntitiesProvider.cs" />
     <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\GestprojectEntities.cs" />
-    <Compile Include="_Global\_Connectors\Sage50ConnectionProvider.cs" />
+    <Compile Include="_Global\_Connectors\Sage50\Sage50ConnectionProvider.cs" />
     <Compile Include="7_ProvidersSynchronization\_prev\EntityProviders\Sage50ProvidersProvider.cs" />
     <Compile Include="_TypeSafety\TypeProtector.cs" />
     <Compile Include="_Dependency\Delegate\DataTableDelegate.cs" />
@@ -650,13 +666,13 @@
     <Compile Include="_Global\_UI\SynchronizationTabs\TabPageLayoutPanelRowGenerator.cs" />
     <Compile Include="7_ProvidersSynchronization\ProviderSynchronizationManager.cs" />
     <Compile Include="_Global\_Log\ApplicationLogger.cs" />
-    <Compile Include="_Global\_DataHolders\UI\ClientsUIHolder.cs" />
+    <Compile Include="_Global\_UI\ClientsUIHolder.cs" />
     <Compile Include="_Global\_DataHolders\DataHolder.cs" />
-    <Compile Include="_Global\_DataHolders\UI\Sage50ConnectionUIHolder.cs" />
+    <Compile Include="_Global\_UI\Sage50ConnectionUIHolder.cs" />
     <Compile Include="_Global\_DataHolders\Sage50DataHolder.cs" />
     <Compile Include="_Global\_DataHolders\GestprojectDataHolder.cs" />
-    <Compile Include="_Global\_DataHolders\UI\MainWindowUIHolder.cs" />
-    <Compile Include="_Global\_DataHolders\UI\StyleHolder.cs" />
+    <Compile Include="_Global\_UI\MainWindowUIHolder.cs" />
+    <Compile Include="_Global\_UI\StyleHolder.cs" />
     <Compile Include="__prev\GestprojectAPI\1_ConnectToGestprojectDatabase .cs" />
     <Compile Include="_Global\_UI\MainWindow\ManageApplicationGlobalStyles.cs" />
     <Compile Include="Resources.Designer.cs">

@@ -1,4 +1,5 @@
-﻿using sage.ew.cliente;
+﻿using Infragistics.Designers.SqlEditor;
+using sage.ew.cliente;
 using sage.ew.db;
 using Sage.ES.S50.Modelos;
 using SincronizadorGPS50.GestprojectDataManager;
@@ -11,6 +12,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using static Sage.ES.S50.S50Update.Classes.S50UpdateLog;
 
 namespace SincronizadorGPS50
 {
@@ -42,11 +44,13 @@ namespace SincronizadorGPS50
 
             GetSelectedEntities();
 
-            foreach (SynchronizableProjectModel entity in SynchronizableEntities) 
+            foreach(SynchronizableProjectModel entity in SynchronizableEntities)
             {
                if(ValidateIfEntityWasTransferred(entity) == false)
                {
-                  TransferEntity(entity);
+                  string newEntityCode = GetNextAvailableSageEntityCode();
+
+                  TransferEntity(entity, newEntityCode);
                   RegisterTransferredEntitySageData(entity);
                }
                else
@@ -92,31 +96,129 @@ namespace SincronizadorGPS50
                      while(reader.Read())
                      {
                         SynchronizableProjectModel entity = new SynchronizableProjectModel();
-                        
+
                         entity.ID = reader["ID"] as int?;
-                        entity.SYNC_STATUS = reader["SYNC_STATUS"] as string;
+                        entity.SYNC_STATUS = (reader["SYNC_STATUS"] as string) ?? "";
                         entity.PRY_ID = reader["PRY_ID"] as int?;
-                        entity.PRY_CODIGO = reader["PRY_CODIGO"] as string;
-                        entity.PRY_NOMBRE = reader["PRY_NOMBRE"] as string;
-                        entity.PRY_DIRECCION = reader["PRY_DIRECCION"] as string;
-                        entity.PRY_LOCALIDAD = reader["PRY_LOCALIDAD"] as string;
-                        entity.PRY_PROVINCIA = reader["PRY_PROVINCIA"] as string;
-                        entity.PRY_CP = reader["PRY_CP"] as string;
-                        entity.S50_CODE = reader["S50_CODE"] as string;
-                        entity.S50_GUID_ID = reader["S50_GUID_ID"] as string;
-                        entity.S50_COMPANY_GROUP_NAME = reader["S50_COMPANY_GROUP_NAME"] as string;
-                        entity.S50_COMPANY_GROUP_CODE = reader["S50_COMPANY_GROUP_CODE"] as string;
-                        entity.S50_COMPANY_GROUP_MAIN_CODE = reader["S50_COMPANY_GROUP_MAIN_CODE"] as string;
-                        entity.S50_COMPANY_GROUP_GUID_ID = reader["S50_COMPANY_GROUP_GUID_ID"] as string;
+                        entity.PRY_CODIGO = (reader["PRY_CODIGO"] as string) ?? "";
+                        entity.PRY_NOMBRE = (reader["PRY_NOMBRE"] as string) ?? "";
+                        entity.PRY_DIRECCION = (reader["PRY_DIRECCION"] as string) ?? "";
+                        entity.PRY_LOCALIDAD = (reader["PRY_LOCALIDAD"] as string) ?? "";
+                        entity.PRY_PROVINCIA = (reader["PRY_PROVINCIA"] as string) ?? "";
+                        entity.PRY_CP = (reader["PRY_CP"] as string) ?? "";
+                        entity.S50_CODE = (reader["S50_CODE"] as string) ?? "";
+                        entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
+                        entity.S50_COMPANY_GROUP_NAME = (reader["S50_COMPANY_GROUP_NAME"] as string) ?? "";
+                        entity.S50_COMPANY_GROUP_CODE = (reader["S50_COMPANY_GROUP_CODE"] as string) ?? "";
+                        entity.S50_COMPANY_GROUP_MAIN_CODE = (reader["S50_COMPANY_GROUP_MAIN_CODE"] as string) ?? "";
+                        entity.S50_COMPANY_GROUP_GUID_ID = (reader["S50_COMPANY_GROUP_GUID_ID"] as string) ?? "";
                         entity.LAST_UPDATE = reader["LAST_UPDATE"] as DateTime?;
                         entity.GP_USU_ID = reader["GP_USU_ID"] as int?;
-                        entity.COMMENTS = reader["COMMENTS"] as string;
+                        entity.COMMENTS = (reader["COMMENTS"] as string) ?? "";
 
                         SynchronizableEntities.Add(entity);
                      }
                   }
                }
             }
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
+         finally
+         {
+            Connection.Close();
+         }
+      }
+
+      public int? GetProjectCustomerId
+      (
+         SynchronizableProjectModel entity
+      )
+      {
+         try
+         {
+            Connection.Open();
+
+            string sqlString = $@"
+               SELECT 
+                  PAR_ID_EMPRESA
+               FROM
+                  PROYECTO
+               WHERE
+                  PRY_ID=@PRY_ID
+               ";
+
+            using(SqlCommand command = new SqlCommand(sqlString, Connection))
+            {
+               command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID);
+
+               using(SqlDataReader reader = command.ExecuteReader())
+               {
+                  while(reader.Read())
+                  {
+                     int? participantId = (reader["PAR_ID_EMPRESA"] as int?) ?? -1;
+                     return participantId;
+                  }
+               }
+            }
+
+            return -1;
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
+         finally
+         {
+            Connection.Close();
+         }
+      }
+
+      public string GetProjectCustomerCodeById
+      (
+         int? id
+      )
+      {
+         try
+         {
+            Connection.Open();
+
+            string sqlString = $@"
+            SELECT 
+               S50_CODE
+            FROM
+               INT_SAGE_SINC_CLIENTES
+            WHERE
+               PAR_ID=@PAR_ID
+            ;";
+
+            using(SqlCommand command = new SqlCommand(sqlString, Connection))
+            {
+               command.Parameters.AddWithValue("@PAR_ID", id);
+
+               using(SqlDataReader reader = command.ExecuteReader())
+               {
+                  while(reader.Read())
+                  {
+                     string customerCode = (reader["S50_CODE"] as string) ?? "";
+                     return customerCode;
+                  }
+               }
+            }
+
+            return "";
          }
          catch(System.Exception exception)
          {
@@ -192,17 +294,18 @@ namespace SincronizadorGPS50
       }
 
 
-      public void TransferEntity
-      (
-         SynchronizableProjectModel entity
-      )
+      public string GetNextAvailableSageEntityCode()
       {
          try
          {
             string getNewEntityCode = $@" SELECT MAX(CODIGO) FROM {DB.SQLDatabase("comunes","obra")};";
+
             DataTable sageEntityDataTable = new DataTable();
+
             DB.SQLExec(getNewEntityCode, ref sageEntityDataTable);
+
             string newSageEntityCode = "";
+
             if(sageEntityDataTable.Rows.Count > 0)
             {
                newSageEntityCode = (Convert.ToInt32(sageEntityDataTable.Rows[0].ItemArray[0]) + 1).ToString();
@@ -212,21 +315,63 @@ namespace SincronizadorGPS50
                newSageEntityCode = "1";
             };
 
-            Obra sageEntity = new sage.ew.cliente.Obra();
-            sageEntity._Codigo = newSageEntityCode;
-            sageEntity._Nombre = entity.PRY_NOMBRE;
-            sageEntity._Direccion = entity.PRY_DIRECCION;
-            sageEntity._Codpost = entity.PRY_CP;
-            sageEntity._Poblacion = entity.PRY_LOCALIDAD;
-            sageEntity._Provincia = entity.PRY_PROVINCIA;
+            newSageEntityCode = newSageEntityCode.PadLeft(5, '0');
 
-            if(sageEntity._Save())
+            return newSageEntityCode;
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
+      }
+
+      public void TransferEntity
+      (
+         SynchronizableProjectModel entity, string newSageEntityCode
+      )
+      {
+         try
+         {
+            //Obra sageEntity = new sage.ew.cliente.Obra();
+            //sageEntity._Codigo = newSageEntityCode ?? "";
+            //sageEntity._Nombre = entity.PRY_NOMBRE ?? "";
+            //sageEntity._Direccion = entity.PRY_DIRECCION ?? "";
+            //sageEntity._Codpost = entity.PRY_CP ?? "";
+            //sageEntity._Poblacion = entity.PRY_LOCALIDAD ?? "";
+            //sageEntity._Provincia = entity.PRY_PROVINCIA ?? "";
+
+            ProjectEntityForSageCreation projectEntityForSageCreation = new ProjectEntityForSageCreation();
+            projectEntityForSageCreation.codigo = newSageEntityCode ?? "";
+            projectEntityForSageCreation.nombre = entity.PRY_NOMBRE ?? "";
+            projectEntityForSageCreation.direccion = entity.PRY_DIRECCION ?? "";
+            projectEntityForSageCreation.poblacion = entity.PRY_LOCALIDAD ?? "";
+            projectEntityForSageCreation.provincia = entity.PRY_PROVINCIA ?? "";
+            projectEntityForSageCreation.codpos = entity.PRY_CP ?? "";
+            int? customerId = GetProjectCustomerId(entity);
+            projectEntityForSageCreation.cliente = GetProjectCustomerCodeById(customerId);
+
+            SageProjectBussinessClass sageProjectBussinessClass = new SageProjectBussinessClass();
+            sageProjectBussinessClass._Create(projectEntityForSageCreation);
+
+            //if(sageEntity._Save())
+            if(sageProjectBussinessClass._Create(projectEntityForSageCreation))
             {
-               entity.S50_CODE = sageEntity._Codigo;
-               entity.S50_GUID_ID = sageEntity._Guid_Id;
+               //entity.S50_CODE = sageEntity._Codigo;
+               //entity.S50_GUID_ID = sageEntity._Guid_Id;
+               entity.S50_CODE = sageProjectBussinessClass._oObra._Codigo;
+               entity.S50_GUID_ID = sageProjectBussinessClass._oObra._Guid_Id;
             }
             else
             {
+               if(sageProjectBussinessClass._Error_Message != "")
+               {
+                  MessageBox.Show(sageProjectBussinessClass._Error_Message);
+               }
                MessageBox.Show($"No pudimos transferir la obra \"{entity.PRY_NOMBRE}\"");
             }
          }

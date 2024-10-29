@@ -1,4 +1,5 @@
 ﻿using Infragistics.Win.UltraWinTabControl;
+using System.Reflection;
 
 namespace SincronizadorGPS50
 {
@@ -8,10 +9,6 @@ namespace SincronizadorGPS50
       {
          try
          {
-            // MainUltraTabControl
-            // MainUltraTabControl
-            // MainUltraTabControl
-            // MainUltraTabControl
             // MainUltraTabControl
 
             MainWindowUIHolder.MainWindow.Width = StyleHolder.ScreenWorkableWidth;
@@ -24,22 +21,35 @@ namespace SincronizadorGPS50
             MainWindowUIHolder.MainWindow.Controls.Add(MainWindowUIHolder.MainTabControl);
 
             // MainUltraTabControlTabs
-            // MainUltraTabControlTabs
-            // MainUltraTabControlTabs
-            // MainUltraTabControlTabs
-            // MainUltraTabControlTabs
 
             MainWindowUIHolder.MainTabControl.SelectedTab = MainWindowUIHolder.Sage50ConnectionTab;
 
-            MainWindowUIHolder.Sage50ConnectionTab = MainWindowUIHolder.MainTabControl.Tabs.Add("Sage50ConnectionTab", "Conexión con Sage50");
-            MainWindowUIHolder.CompaniesTab = MainWindowUIHolder.MainTabControl.Tabs.Add("CompaniesTab", "Empresas");
-            MainWindowUIHolder.CustomersTab = MainWindowUIHolder.MainTabControl.Tabs.Add("CustomersTab", "Clientes");
-            MainWindowUIHolder.ProjectsTab = MainWindowUIHolder.MainTabControl.Tabs.Add("ProjecsTab", "Proyectos");
-            MainWindowUIHolder.TaxesTab = MainWindowUIHolder.MainTabControl.Tabs.Add("TaxesTab", "Impuestos");
-            MainWindowUIHolder.SubaccountableAccountsTab = MainWindowUIHolder.MainTabControl.Tabs.Add("SubaccountableAccountsTab", "Cuentas Contables");
-            MainWindowUIHolder.ProvidersTab = MainWindowUIHolder.MainTabControl.Tabs.Add("ProvidersTab", "Proveedores");
-            MainWindowUIHolder.IssuedBillsTab = MainWindowUIHolder.MainTabControl.Tabs.Add("IssuedBillsTab", "Facturas Emitidas");
-            MainWindowUIHolder.ReceivedBillsTab = MainWindowUIHolder.MainTabControl.Tabs.Add("ReceivedBillsTab", "Facturas Recibidas");
+            MainWindowUIHolder.Sage50ConnectionTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("Sage50ConnectionTab", "Conexión con Sage50");
+
+            MainWindowUIHolder.CompaniesTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("CompaniesTab", "Empresas");
+
+            MainWindowUIHolder.CustomersTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("CustomersTab", "Clientes");
+
+            MainWindowUIHolder.ProjectsTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("ProjecsTab", "Proyectos");
+
+            MainWindowUIHolder.TaxesTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("TaxesTab", "Impuestos");
+
+            MainWindowUIHolder.SubaccountableAccountsTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("SubaccountableAccountsTab", "Cuentas Contables");
+
+            MainWindowUIHolder.ProvidersTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("ProvidersTab", "Proveedores");
+
+            MainWindowUIHolder.IssuedBillsTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("IssuedBillsTab", "Facturas Emitidas");
+
+            MainWindowUIHolder.ReceivedBillsTab = 
+            MainWindowUIHolder.MainTabControl.Tabs.Add("ReceivedBillsTab", "Facturas Recibidas");
 
             foreach(UltraTab tab in MainWindowUIHolder.MainTabControl.Tabs)
             {
@@ -50,10 +60,15 @@ namespace SincronizadorGPS50
 
             MainWindowUIHolder.MainWindow.Controls.Add(MainWindowUIHolder.MainTabControl);
          }
-         catch (System.Exception exception)
+         catch(System.Exception exception)
          {
-            throw exception;
-         };
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
       }
    }
 }

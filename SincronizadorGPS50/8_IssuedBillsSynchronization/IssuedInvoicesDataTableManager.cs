@@ -51,28 +51,19 @@ namespace SincronizadorGPS50
             {
                if(ValidateIfEntityWasRegistered(entity) == false)
                {
-                  //MessageBox.Show(entity.FCE_ID + " doesn't exist");
                   GetSynchronizableIssuedBillClientSubaccountableAccount();
                   GetSynchronizableIssuedBillSageCompanyNumber();
                   GetSynchronizableIssuedBillSageTaxCode();
                   GetGestprojectIssuedBillsDetails();
-                  //GetSynchronizableIssuedBillSageProjectCode();
                   RegisterEntityOnSynchronizationTable();
                   RegisterEntityDetailsOnSynchronizationTable();
                   this.AppendSynchronizationTableDataToEntity(entity);
                }
                else
                {
-                  //MessageBox.Show(entity.FCE_ID + " exists");
                   this.AppendSynchronizationTableDataToEntity(entity);
                }
             }
-
-            //new VisualizePropertiesAndValues<SynchronizableIssuedInvoiceModel>(
-            //   MethodBase.GetCurrentMethod().DeclaringType.Name + "." + MethodBase.GetCurrentMethod().Name,
-            //   "SynchronizableEntities",
-            //   SynchronizableEntities
-            //);
 
             CreateAndDefineDataSource();
             PaintEntitiesOnDataSource();
@@ -153,12 +144,12 @@ namespace SincronizadorGPS50
                   while(reader.Read())
                   {
                      SynchronizableIssuedInvoiceModel entity = new SynchronizableIssuedInvoiceModel();
-                     entity.FCE_ID = reader["FCE_ID"] as int?;
-                     entity.FCE_FECHA = reader["FCE_FECHA"] as DateTime?;
-                     entity.PAR_DAO_ID = reader["PAR_DAO_ID"] as int?;
-                     entity.PAR_CLI_ID = reader["PAR_CLI_ID"] as int?;
-                     entity.FCE_IVA_IGIC = reader["FCE_IVA_IGIC"] as string;
-                     entity.FCE_SUBCTA_CONTABLE = reader["FCE_SUBCTA_CONTABLE"] as string;
+                     entity.FCE_ID = (reader["FCE_ID"] as int?) ?? -1;
+                     entity.FCE_FECHA = (reader["FCE_FECHA"] as DateTime?) ?? DateTime.Now;
+                     entity.PAR_DAO_ID = (reader["PAR_DAO_ID"] as int?) ?? -1;
+                     entity.PAR_CLI_ID = (reader["PAR_CLI_ID"] as int?) ?? -1;
+                     entity.FCE_IVA_IGIC = (reader["FCE_IVA_IGIC"] as string) ?? "";
+                     entity.FCE_SUBCTA_CONTABLE = (reader["FCE_SUBCTA_CONTABLE"] as string) ?? "";
 
                      SynchronizableEntities.Add(entity);
                   };
@@ -206,7 +197,7 @@ namespace SincronizadorGPS50
                   {
                      while(reader.Read())
                      {
-                        entity.PAR_SUBCTA_CONTABLE = reader["PAR_SUBCTA_CONTABLE"] as string;
+                        entity.PAR_SUBCTA_CONTABLE = (reader["PAR_SUBCTA_CONTABLE"] as string) ?? "";
                      };
                   };
                };
@@ -253,7 +244,7 @@ namespace SincronizadorGPS50
                   {
                      while(reader.Read())
                      {
-                        entity.SageCompanyNumber = reader["SageCompanyNumber"] as string;
+                        entity.SageCompanyNumber = (reader["SageCompanyNumber"] as string) ?? "";
                      };
                   };
                };
@@ -300,7 +291,7 @@ namespace SincronizadorGPS50
                   {
                      while(reader.Read())
                      {
-                        entity.TaxCode = reader["S50_CODE"] as string;
+                        entity.TaxCode = (reader["S50_CODE"] as string) ?? "";
                      };
                   };
                };
@@ -388,7 +379,9 @@ namespace SincronizadorGPS50
 
             foreach(SynchronizableIssuedInvoiceModel invoice in SynchronizableEntities)
             {
-               List<SynchronizableIssuedInvoiceDetailModel> invoiceDetails = SynchronizableEntitiesDetails.Where(detail => detail.FCE_ID == invoice.FCE_ID).ToList();
+               List<SynchronizableIssuedInvoiceDetailModel> invoiceDetails = 
+               SynchronizableEntitiesDetails
+               .Where(detail => detail.FCE_ID == invoice.FCE_ID).ToList();
 
                string sqlString = $@"
                ";
@@ -417,7 +410,7 @@ namespace SincronizadorGPS50
          finally
          {
             Connection.Close();
-         };
+         }
       }
 
 
@@ -485,24 +478,24 @@ namespace SincronizadorGPS50
                   entity.SYNC_STATUS = SynchronizationStatusOptions.NoTransferido;
 
                   command.Parameters.AddWithValue("@SYNC_STATUS", entity.SYNC_STATUS);
-                  command.Parameters.AddWithValue("@FCE_ID", entity.FCE_ID);
-                  command.Parameters.AddWithValue("@PAR_DAO_ID", entity.PAR_DAO_ID);
-                  command.Parameters.AddWithValue("@FCE_REFERENCIA", entity.FCE_REFERENCIA);
-                  command.Parameters.AddWithValue("@FCE_FECHA", entity.FCE_FECHA);
-                  command.Parameters.AddWithValue("@PAR_CLI_ID", entity.PAR_CLI_ID);
-                  command.Parameters.AddWithValue("@FCE_BASE_IMPONIBLE", entity.FCE_BASE_IMPONIBLE);
-                  command.Parameters.AddWithValue("@FCE_VALOR_IVA", entity.FCE_VALOR_IVA);
-                  command.Parameters.AddWithValue("@FCE_IVA", entity.FCE_IVA);
-                  command.Parameters.AddWithValue("@FCE_VALOR_IRPF", entity.FCE_VALOR_IRPF);
-                  command.Parameters.AddWithValue("@FCE_IRPF", entity.FCE_IRPF);
-                  command.Parameters.AddWithValue("@FCE_TOTAL_SUPLIDO", entity.FCE_TOTAL_SUPLIDO);
-                  command.Parameters.AddWithValue("@FCE_TOTAL_FACTURA", entity.FCE_TOTAL_FACTURA);
-                  command.Parameters.AddWithValue("@FCE_OBSERVACIONES", entity.FCE_OBSERVACIONES);
-                  command.Parameters.AddWithValue("@FCE_IVA_IGIC", entity.FCE_IVA_IGIC);
-                  command.Parameters.AddWithValue("@PAR_SUBCTA_CONTABLE", entity.PAR_SUBCTA_CONTABLE);
-                  command.Parameters.AddWithValue("@SageCompanyNumber", entity.SageCompanyNumber);
-                  command.Parameters.AddWithValue("@TaxCode", entity.TaxCode);
-                  command.Parameters.AddWithValue("@FCE_SUBCTA_CONTABLE", entity.FCE_SUBCTA_CONTABLE);
+                  command.Parameters.AddWithValue("@FCE_ID", entity.FCE_ID ?? -1);
+                  command.Parameters.AddWithValue("@PAR_DAO_ID", entity.PAR_DAO_ID ?? -1);
+                  command.Parameters.AddWithValue("@FCE_REFERENCIA", entity.FCE_REFERENCIA ?? "");
+                  command.Parameters.AddWithValue("@FCE_FECHA", entity.FCE_FECHA ?? DateTime.Now);
+                  command.Parameters.AddWithValue("@PAR_CLI_ID", entity.PAR_CLI_ID ?? -1);
+                  command.Parameters.AddWithValue("@FCE_BASE_IMPONIBLE", entity.FCE_BASE_IMPONIBLE ?? 0);
+                  command.Parameters.AddWithValue("@FCE_VALOR_IVA", entity.FCE_VALOR_IVA ?? 0);
+                  command.Parameters.AddWithValue("@FCE_IVA", entity.FCE_IVA ?? 0);
+                  command.Parameters.AddWithValue("@FCE_VALOR_IRPF", entity.FCE_VALOR_IRPF ?? 0);
+                  command.Parameters.AddWithValue("@FCE_IRPF", entity.FCE_IRPF ?? 0);
+                  command.Parameters.AddWithValue("@FCE_TOTAL_SUPLIDO", entity.FCE_TOTAL_SUPLIDO ?? 0);
+                  command.Parameters.AddWithValue("@FCE_TOTAL_FACTURA", entity.FCE_TOTAL_FACTURA ?? 0);
+                  command.Parameters.AddWithValue("@FCE_OBSERVACIONES", entity.FCE_OBSERVACIONES ?? "");
+                  command.Parameters.AddWithValue("@FCE_IVA_IGIC", entity.FCE_IVA_IGIC ?? "");
+                  command.Parameters.AddWithValue("@PAR_SUBCTA_CONTABLE", entity.PAR_SUBCTA_CONTABLE ?? "");
+                  command.Parameters.AddWithValue("@SageCompanyNumber", entity.SageCompanyNumber ?? "");
+                  command.Parameters.AddWithValue("@TaxCode", entity.TaxCode ?? "");
+                  command.Parameters.AddWithValue("@FCE_SUBCTA_CONTABLE", entity.FCE_SUBCTA_CONTABLE ?? "");
 
                   command.ExecuteNonQuery();
                };
@@ -567,15 +560,15 @@ namespace SincronizadorGPS50
                {
                   entity.SYNC_STATUS = SynchronizationStatusOptions.NoTransferido;
 
-                  command.Parameters.AddWithValue("@SYNC_STATUS", entity.SYNC_STATUS);
-                  command.Parameters.AddWithValue("@DFE_ID", entity.DFE_ID);
-                  command.Parameters.AddWithValue("@DFE_CONCEPTO", entity.DFE_CONCEPTO);
-                  command.Parameters.AddWithValue("@DFE_PRECIO_UNIDAD", entity.DFE_PRECIO_UNIDAD);
-                  command.Parameters.AddWithValue("@DFE_UNIDADES", entity.DFE_UNIDADES);
-                  command.Parameters.AddWithValue("@DFE_SUBTOTAL", entity.DFE_SUBTOTAL);
-                  command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID);
-                  command.Parameters.AddWithValue("@FCE_ID", entity.FCE_ID);
-                  command.Parameters.AddWithValue("@DFE_SUBTOTAL_BASE", entity.DFE_SUBTOTAL_BASE);
+                  command.Parameters.AddWithValue("@SYNC_STATUS", entity.SYNC_STATUS ?? "");
+                  command.Parameters.AddWithValue("@DFE_ID", entity.DFE_ID ?? -1);
+                  command.Parameters.AddWithValue("@DFE_CONCEPTO", entity.DFE_CONCEPTO ?? "");
+                  command.Parameters.AddWithValue("@DFE_PRECIO_UNIDAD", entity.DFE_PRECIO_UNIDAD ?? 0);
+                  command.Parameters.AddWithValue("@DFE_UNIDADES", entity.DFE_UNIDADES ?? 0);
+                  command.Parameters.AddWithValue("@DFE_SUBTOTAL", entity.DFE_SUBTOTAL ?? 0);
+                  command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID ?? -1);
+                  command.Parameters.AddWithValue("@FCE_ID", entity.FCE_ID ?? -1);
+                  command.Parameters.AddWithValue("@DFE_SUBTOTAL_BASE", entity.DFE_SUBTOTAL_BASE ?? 0);
 
                   command.ExecuteNonQuery();
                };
@@ -688,16 +681,16 @@ namespace SincronizadorGPS50
                   while(reader.Read())
                   {
                      entity.ID = reader["ID"] as int?;
-                     entity.SYNC_STATUS = reader["SYNC_STATUS"] as string;
-                     entity.S50_CODE = reader["S50_CODE"] as string;
-                     entity.S50_GUID_ID = reader["S50_GUID_ID"] as string;
-                     entity.S50_COMPANY_GROUP_NAME = reader["S50_COMPANY_GROUP_NAME"] as string;
-                     entity.S50_COMPANY_GROUP_CODE = reader["S50_COMPANY_GROUP_CODE"] as string;
-                     entity.S50_COMPANY_GROUP_MAIN_CODE = reader["S50_COMPANY_GROUP_MAIN_CODE"] as string;
-                     entity.S50_COMPANY_GROUP_GUID_ID = reader["S50_COMPANY_GROUP_GUID_ID"] as string;
-                     entity.LAST_UPDATE = reader["LAST_UPDATE"] as DateTime?;
-                     entity.GP_USU_ID = reader["GP_USU_ID"] as int?;
-                     entity.COMMENTS = reader["COMMENTS"] as string;
+                     entity.SYNC_STATUS = (reader["SYNC_STATUS"] as string) ?? "";
+                     entity.S50_CODE = (reader["S50_CODE"] as string) ?? "";
+                     entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
+                     entity.S50_COMPANY_GROUP_NAME = (reader["S50_COMPANY_GROUP_NAME"] as string) ?? "";
+                     entity.S50_COMPANY_GROUP_CODE = (reader["S50_COMPANY_GROUP_CODE"] as string) ?? "";
+                     entity.S50_COMPANY_GROUP_MAIN_CODE = (reader["S50_COMPANY_GROUP_MAIN_CODE"] as string) ?? "";
+                     entity.S50_COMPANY_GROUP_GUID_ID = (reader["S50_COMPANY_GROUP_GUID_ID"] as string) ?? "";
+                     entity.LAST_UPDATE = (reader["LAST_UPDATE"] as DateTime?) ?? DateTime.Now;
+                     entity.GP_USU_ID = (reader["GP_USU_ID"] as int?)  ?? -1;
+                     entity.COMMENTS = (reader["COMMENTS"] as string) ?? "";
                   }
                }
             }
@@ -717,19 +710,6 @@ namespace SincronizadorGPS50
          }
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       public void CreateAndDefineDataSource()
       {
          try
@@ -745,9 +725,8 @@ namespace SincronizadorGPS50
                MethodBase.GetCurrentMethod().Name,
                exception
             );
-         };
+         }
       }
-
 
       public void PaintEntitiesOnDataSource()
       {
@@ -768,7 +747,7 @@ namespace SincronizadorGPS50
                MethodBase.GetCurrentMethod().Name,
                exception
             );
-         };
+         }
       }
    }
 }

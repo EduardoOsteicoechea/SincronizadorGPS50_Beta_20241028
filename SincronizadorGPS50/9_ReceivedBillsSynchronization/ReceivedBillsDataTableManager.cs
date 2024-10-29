@@ -7,9 +7,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
-using Infragistics.Designers.SqlEditor;
-using System.Windows.Forms;
-using System;
 
 namespace SincronizadorGPS50
 {
@@ -45,19 +42,12 @@ namespace SincronizadorGPS50
             SynchronizadorGPS50ReceivedInvoicesDetails = new List<SincronizadorGPS50ReceivedInvoiceDetailModel>();
 
             ManageReceivedBillsSynchronizationTableStatus(TableSchema);
-
             ManageReceivedBillsDetailsSynchronizationTableStatus(new ReceivedBillsDetailsSynchronizationTableSchemaProvider());
-
             GetSageData();
-
             StructureSynchronizationData();
-
             AppendMissingSynchronizationData();
-
             RegisterSynchronizationData();
-
             CreateAndDefineDataSource();
-
             PaintEntitiesOnDataSource(SynchronizadorGPS50ReceivedInvoices);
 
             return DataTable;
@@ -204,6 +194,7 @@ namespace SincronizadorGPS50
                   sageReceivedBillProvider,
                   sageReceivedBillProject
                );
+
                SageReceivedInvoicesEnrichedModels.Add(sageReceivedBillsEnrichedModel);
             };
 
@@ -366,11 +357,11 @@ namespace SincronizadorGPS50
                {
                   while(reader.Read())
                   {
-                     entity.PAR_ID = reader["PAR_ID"] as int?;
-                     entity.PAR_NOMBRE = reader["PAR_NOMBRE"] as string;
-                     entity.PAR_CIF_NIF = reader["PAR_CIF_NIF"] as string;
-                     entity.SageCompanyNumber = reader["SageCompanyNumber"] as string;
-                     entity.S50_GUID_ID = reader["S50_GUID_ID"] as string;
+                     entity.PAR_ID = (reader["PAR_ID"] as int?) ?? -1;
+                     entity.PAR_NOMBRE = (reader["PAR_NOMBRE"] as string) ?? "";
+                     entity.PAR_CIF_NIF = (reader["PAR_CIF_NIF"] as string) ?? "";
+                     entity.SageCompanyNumber = (reader["SageCompanyNumber"] as string) ?? "";
+                     entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
                   };
                };
             };
@@ -421,8 +412,8 @@ namespace SincronizadorGPS50
                {
                   while(reader.Read())
                   {
-                     entity.PAR_ID = reader["PAR_ID"] as int?;
-                     entity.S50_GUID_ID = reader["S50_GUID_ID"] as string;
+                     entity.PAR_ID = (reader["PAR_ID"] as int?) ?? -1;
+                     entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
                   };
                };
             };
@@ -477,8 +468,8 @@ namespace SincronizadorGPS50
                {
                   while(reader.Read())
                   {
-                     entity.PRY_ID = reader["PRY_ID"] as int?;
-                     entity.S50_GUID_ID = reader["S50_GUID_ID"] as string;
+                     entity.PRY_ID = (reader["PRY_ID"] as int?) ?? -1;
+                     entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
                   };
                };
             };
@@ -571,7 +562,6 @@ namespace SincronizadorGPS50
          }
       }
 
-
       public void GetDetailGuid
       (
          ewDocCompraLinFACTURA receivedInvoiceLine, 
@@ -582,7 +572,7 @@ namespace SincronizadorGPS50
          {
             string sqlString = $@"
             SELECT
-               guid_id
+               GUID_ID
             FROM 
                {DB.SQLDatabase("gestion","d_albcom")}
             WHERE
@@ -907,7 +897,11 @@ namespace SincronizadorGPS50
          };
       }
 
-      public void GetEntitySynchronizationId(SincronizadorGP50ReceivedInvoiceModel entity, string tableName)
+      public void GetEntitySynchronizationId
+      (
+         SincronizadorGP50ReceivedInvoiceModel entity, 
+         string tableName
+      )
       {
          try
          {
@@ -951,7 +945,10 @@ namespace SincronizadorGPS50
          };
       }
 
-      public void RegisterSynchornizationEntityDetail(SincronizadorGPS50ReceivedInvoiceDetailModel entityDetail, string tableName)
+      public void RegisterSynchornizationEntityDetail
+      (
+         SincronizadorGPS50ReceivedInvoiceDetailModel entityDetail, string tableName
+      )
       {
          try
          {
@@ -1082,15 +1079,6 @@ namespace SincronizadorGPS50
             Connection.Close();
          };
       }
-
-
-
-
-
-
-
-
-
 
       public void CreateAndDefineDataSource()
       {                  

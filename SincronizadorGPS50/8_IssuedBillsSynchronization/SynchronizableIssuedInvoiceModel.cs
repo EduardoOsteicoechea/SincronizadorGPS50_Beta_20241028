@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
-using System.Reflection;
-using System.Text;
 
 namespace SincronizadorGPS50
 {
@@ -12,7 +9,7 @@ namespace SincronizadorGPS50
       public int? PAR_DAO_ID { get; set; } = -1;
       public string FCE_REFERENCIA { get; set; } = "";
       public int? FCE_NUM_FACTURA { get; set; } = -1;
-      public DateTime? FCE_FECHA { get; set; } = null;
+      public DateTime? FCE_FECHA { get; set; } = DateTime.Now;
       public int? PAR_CLI_ID { get; set; } = -1;
       public decimal? FCE_BASE_IMPONIBLE { get; set; } = 0;
       public decimal? FCE_VALOR_IVA { get; set; } = 0;
@@ -29,12 +26,10 @@ namespace SincronizadorGPS50
       public string SageCompanyNumber { get; set; } = "";
       public string TaxCode { get; set; } = "";
       public string FCE_SUBCTA_CONTABLE { get; set; } = "";
-      public string SageProjectCode { get; set; } = "";
-
-      
+      public string SageProjectCode { get; set; } = "";      
 
       // Syncronization fields
-      public int? ID { get; set; } = null;
+      public int? ID { get; set; } = -1;
       public string SYNC_STATUS { get; set; } = "";
       public string S50_CODE { get; set; } = "";
       public string S50_GUID_ID { get; set; } = "";
@@ -42,8 +37,8 @@ namespace SincronizadorGPS50
       public string S50_COMPANY_GROUP_CODE { get; set; } = "";
       public string S50_COMPANY_GROUP_MAIN_CODE { get; set; } = "";
       public string S50_COMPANY_GROUP_GUID_ID { get; set; } = "";
-      public DateTime? LAST_UPDATE { get; set; } = null;
-      public int? GP_USU_ID { get; set; } = null;
+      public DateTime? LAST_UPDATE { get; set; } = DateTime.Now;
+      public int? GP_USU_ID { get; set; } = -1;
       public string COMMENTS { get; set; } = "";
    }
 }

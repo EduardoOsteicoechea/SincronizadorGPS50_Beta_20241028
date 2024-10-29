@@ -251,7 +251,7 @@ namespace SincronizadorGPS50
       {
          try
          {
-            string getNewEntityCode = $@" SELECT MAX(CODIGO) FROM {DB.SQLDatabase("gestion","clientes")};";
+            string getNewEntityCode = $@"SELECT MAX(CODIGO) FROM {DB.SQLDatabase("gestion","clientes")} WHERE CODIGO LIKE '43%';";
             DataTable sageEntityDataTable = new DataTable();
             DB.SQLExec(getNewEntityCode, ref sageEntityDataTable);
 

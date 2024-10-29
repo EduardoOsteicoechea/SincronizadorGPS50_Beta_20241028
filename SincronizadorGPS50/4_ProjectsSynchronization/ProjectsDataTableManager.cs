@@ -99,6 +99,7 @@ namespace SincronizadorGPS50
                   ,PRY_LOCALIDAD
                   ,PRY_PROVINCIA
                   ,PRY_CP
+                  ,PAR_ID_EMPRESA
                FROM
                   PROYECTO
             END
@@ -112,13 +113,14 @@ namespace SincronizadorGPS50
                   {
                      SynchronizableProjectModel entity = new SynchronizableProjectModel();
 
-                     entity.PRY_ID = reader["PRY_ID"] as int?;
-                     entity.PRY_CODIGO = reader["PRY_CODIGO"] as string;
-                     entity.PRY_NOMBRE = reader["PRY_NOMBRE"] as string;
-                     entity.PRY_DIRECCION = reader["PRY_DIRECCION"] as string;
-                     entity.PRY_LOCALIDAD = reader["PRY_LOCALIDAD"] as string;
-                     entity.PRY_PROVINCIA = reader["PRY_PROVINCIA"] as string;
-                     entity.PRY_CP = reader["PRY_CP"] as string;
+                     entity.PRY_ID = (reader["PRY_ID"] as int?) ?? -1;
+                     entity.PRY_CODIGO = (reader["PRY_CODIGO"] as string) ?? "";
+                     entity.PRY_NOMBRE = (reader["PRY_NOMBRE"] as string) ?? "";
+                     entity.PRY_DIRECCION = (reader["PRY_DIRECCION"] as string) ?? "";
+                     entity.PRY_LOCALIDAD = (reader["PRY_LOCALIDAD"] as string) ?? "";
+                     entity.PRY_PROVINCIA = (reader["PRY_PROVINCIA"] as string) ?? "";
+                     entity.PRY_CP = (reader["PRY_CP"] as string) ?? "";
+                     entity.PAR_ID_EMPRESA = (reader["PAR_ID_EMPRESA"] as int?) ?? -1;
 
                      SynchronizableProjects.Add(entity);
                   }
@@ -217,7 +219,7 @@ namespace SincronizadorGPS50
 
                using(SqlCommand command = new SqlCommand(sqlString, Connection))
                {
-                  command.Parameters.AddWithValue("@PRY_ID",entity.PRY_ID);
+                  command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID);
 
                   using(SqlDataReader reader = command.ExecuteReader())
                   {
@@ -257,7 +259,7 @@ namespace SincronizadorGPS50
 
       public void RegisterEntityOnSynchronizationTable()
       {
-         
+
          try
          {
             Connection.Open();
@@ -276,6 +278,7 @@ namespace SincronizadorGPS50
                   ,PRY_LOCALIDAD
                   ,PRY_PROVINCIA
                   ,PRY_CP
+                  ,PAR_ID_EMPRESA
                   ,S50_CODE
                   ,S50_GUID_ID
                   ,S50_COMPANY_GROUP_NAME
@@ -296,6 +299,7 @@ namespace SincronizadorGPS50
                   ,@PRY_LOCALIDAD
                   ,@PRY_PROVINCIA
                   ,@PRY_CP
+                  ,@PAR_ID_EMPRESA
                   ,@S50_CODE
                   ,@S50_GUID_ID
                   ,@S50_COMPANY_GROUP_NAME
@@ -311,7 +315,7 @@ namespace SincronizadorGPS50
                using(SqlCommand command = new SqlCommand(sqlString, Connection))
                {
                   entity.SYNC_STATUS = SynchronizationStatusOptions.NoTransferido;
-                  
+
                   command.Parameters.AddWithValue("@SYNC_STATUS", entity.SYNC_STATUS);
                   command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID);
                   command.Parameters.AddWithValue("@PRY_CODIGO", entity.PRY_CODIGO);
@@ -320,6 +324,7 @@ namespace SincronizadorGPS50
                   command.Parameters.AddWithValue("@PRY_LOCALIDAD", entity.PRY_LOCALIDAD);
                   command.Parameters.AddWithValue("@PRY_PROVINCIA", entity.PRY_PROVINCIA);
                   command.Parameters.AddWithValue("@PRY_CP", entity.PRY_CP);
+                  command.Parameters.AddWithValue("@PAR_ID_EMPRESA", entity.PAR_ID_EMPRESA);
                   command.Parameters.AddWithValue("@S50_CODE", entity.S50_CODE);
                   command.Parameters.AddWithValue("@S50_GUID_ID", entity.S50_GUID_ID);
                   command.Parameters.AddWithValue("@S50_COMPANY_GROUP_NAME", entity.S50_COMPANY_GROUP_NAME);
@@ -349,21 +354,44 @@ namespace SincronizadorGPS50
          }
       }
 
-
       public void CreateAndDefineDataSource()
       {
-         IDataTableGenerator providersDataTableGenerator = new SyncrhonizationDataTableGenerator();
-         DataTable = providersDataTableGenerator.CreateDataTable(TableSchema.ColumnsTuplesList);
+         try
+         {
+            IDataTableGenerator providersDataTableGenerator = new SyncrhonizationDataTableGenerator();
+            DataTable = providersDataTableGenerator.CreateDataTable(TableSchema.ColumnsTuplesList);
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
       }
 
       public void PaintEntitiesOnDataSource()
       {
-         ISynchronizableEntityPainter<SynchronizableProjectModel> entityPainter = new EntityPainter<SynchronizableProjectModel>();
-         entityPainter.PaintEntityListOnDataTable(
-            SynchronizableProjects,
-            DataTable,
-            TableSchema.ColumnsTuplesList
-         );
+         try
+         {
+            ISynchronizableEntityPainter<SynchronizableProjectModel> entityPainter = new EntityPainter<SynchronizableProjectModel>();
+            entityPainter.PaintEntityListOnDataTable(
+               SynchronizableProjects,
+               DataTable,
+               TableSchema.ColumnsTuplesList
+            );
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
       }
    }
 }

@@ -12,9 +12,10 @@ namespace SincronizadorGPS50
 		public string PRY_LOCALIDAD { get; set; } = "";
 		public string PRY_PROVINCIA { get; set; } = "";
 		public string PRY_CP { get; set; } = "";
+		public int? PAR_ID_EMPRESA { get; set; } = -1;
 
 		// Syncronization fields
-		public int? ID { get; set; } = null;
+		public int? ID { get; set; } = -1;
 		public string SYNC_STATUS { get; set; } = "";
 		public string S50_CODE { get; set; } = "";
 		public string S50_GUID_ID { get; set; } = "";

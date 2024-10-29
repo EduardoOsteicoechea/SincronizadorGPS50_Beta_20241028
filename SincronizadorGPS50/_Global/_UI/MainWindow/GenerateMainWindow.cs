@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows.Forms;
 
 namespace SincronizadorGPS50
@@ -25,28 +21,45 @@ namespace SincronizadorGPS50
          }
          catch(System.Exception exception)
          {
-            throw exception;
-         };
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
       }
 
       private void MainWindow_FormClosing(object sender, FormClosingEventArgs formClosingEvent)
       {
-         if(formClosingEvent.CloseReason == CloseReason.UserClosing)
+         try
          {
-            DialogResult result = MessageBox.Show(
+            if(formClosingEvent.CloseReason == CloseReason.UserClosing)
+            {
+               DialogResult result = MessageBox.Show(
                "¿Desea cerrar la aplicación?", "Confirmación",
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Question
             );
 
-            if(result == DialogResult.No)
-            {
-               formClosingEvent.Cancel = true;
+               if(result == DialogResult.No)
+               {
+                  formClosingEvent.Cancel = true;
+               }
+               else
+               {
+                  MainWindowActions.CloseCompletellyAndAbruptly();
+               };
             }
-            else
-            {
-               MainWindowActions.CloseCompletellyAndAbruptly();
-            };
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
          }
       }
    }

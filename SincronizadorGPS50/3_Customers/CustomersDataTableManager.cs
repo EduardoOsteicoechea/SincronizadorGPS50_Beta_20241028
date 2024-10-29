@@ -601,6 +601,8 @@ namespace SincronizadorGPS50
                      entity.LAST_UPDATE = reader["LAST_UPDATE"] as DateTime?;
                      entity.GP_USU_ID = reader["GP_USU_ID"] as int?;
                      entity.COMMENTS = reader["COMMENTS"] as string;
+
+                     entity.PAR_SUBCTA_CONTABLE = entity.S50_CODE;
                   }
                }
             }

@@ -16,6 +16,14 @@ namespace SincronizadorGPS50
       //List<(string columnName, Type columnType)> Sage50FieldsTupleList { get; set; }
       List<(string columnName, dynamic value)> SynchronizationFieldsDefaultValuesTupleList { get; set; }      
       ((string sageDispactcherMechanismRoute, string tableName) dispatcherAndName, List<(string name, Type type)> tableFieldsAlongTypes) SageTableData {get;set;}
+
+
+      
+      
+      /////////////////////
+      /// Projects
+      /////////////////////
+      (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PAR_ID_EMPRESA { get; set; }
       
       /////////////////////
       /// Issued Invoice Details

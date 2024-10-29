@@ -20538,3 +20538,131 @@ Unclosed quotation mark after the character string 'System.Nullable`1[System.Int
 
 
 --------------------------------------------------
+Date: 2024-10-29 07:56:15.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsDataTableManager
+.GetDetailGuid:
+
+No hay ninguna fila en la posición 0..
+Short Description: Failed to end the methods execution successfully..
+Message: No hay ninguna fila en la posición 0.
+
+
+--------------------------------------------------
+Date: 2024-10-29 07:56:49.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsDataTableManager
+.StructureSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsDataTableManager
+.GetDetailGuid:
+
+No hay ninguna fila en la posición 0..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.ReceivedBillsDataTableManager
+.GetDetailGuid:
+
+No hay ninguna fila en la posición 0.
+
+
+--------------------------------------------------
+Date: 2024-10-29 08:52:18.
+Location: At:
+
+SincronizadorGPS50
+.CustomersSynchronizer
+.CreateSageEntity:
+
+Error en la creación del cliente Mi empresa.
+Short Description: Failed to end the methods execution successfully..
+Message: Error en la creación del cliente Mi empresa
+
+
+--------------------------------------------------
+Date: 2024-10-29 09:14:11.
+Location: At:
+
+SincronizadorGPS50
+.IssuedInvoicesSynchronizer
+.GetSageProjectCodeById:
+
+Invalid column name 'PRY_ID'..
+Short Description: Failed to end the methods execution successfully..
+Message: Invalid column name 'PRY_ID'.
+
+
+--------------------------------------------------
+Date: 2024-10-29 09:14:34.
+Location: At:
+
+SincronizadorGPS50
+.IssuedInvoicesSynchronizer
+.GetSelectedInvoiceSageProjectCode:
+
+At:
+
+SincronizadorGPS50
+.IssuedInvoicesSynchronizer
+.GetSageProjectCodeById:
+
+Invalid column name 'PRY_ID'..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.IssuedInvoicesSynchronizer
+.GetSageProjectCodeById:
+
+Invalid column name 'PRY_ID'.
+
+
+--------------------------------------------------
+Date: 2024-10-29 09:36:16.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsSynchronizer
+.TransferEntity:
+
+'object' no contiene una definición para 'codigo'..
+Short Description: Failed to end the methods execution successfully..
+Message: 'object' no contiene una definición para 'codigo'.
+
+
+--------------------------------------------------
+Date: 2024-10-29 09:38:16.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsSynchronizer
+.TransferEntity:
+
+'object' no contiene una definición para 'codigo'..
+Short Description: Failed to end the methods execution successfully..
+Message: 'object' no contiene una definición para 'codigo'.
+
+
+--------------------------------------------------
+Date: 2024-10-29 10:14:43.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsDataTableManager
+.GetReceivedBillProjectSynchronizationRegistry:
+
+Invalid object name 'INT_SAGE_SINC_PROYECTOS'..
+Short Description: Failed to end the methods execution successfully..
+Message: Invalid object name 'INT_SAGE_SINC_PROYECTOS'.
+
+
+--------------------------------------------------
