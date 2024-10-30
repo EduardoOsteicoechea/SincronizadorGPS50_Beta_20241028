@@ -20781,3 +20781,16 @@ Message: La cadena de entrada no tiene el formato correcto.No se puede almacenar
 
 
 --------------------------------------------------
+Date: 2024-10-30 10:40:43.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.GetNextAvailableEntityId:
+
+Incorrect syntax near ';'..
+Short Description: Failed to end the methods execution successfully..
+Message: Incorrect syntax near ';'.
+
+
+--------------------------------------------------
