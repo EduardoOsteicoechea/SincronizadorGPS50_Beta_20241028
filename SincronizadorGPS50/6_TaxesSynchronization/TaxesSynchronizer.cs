@@ -303,6 +303,7 @@ namespace SincronizadorGPS50
                   ,IMP_VALOR
                   ,IMP_SUBCTA_CONTABLE
                   ,IMP_SUBCTA_CONTABLE_2
+                  ,IMP_PREDETERMINADO
                )
                VALUES
                (
@@ -313,6 +314,7 @@ namespace SincronizadorGPS50
                   ,@IMP_VALOR
                   ,@IMP_SUBCTA_CONTABLE
                   ,@IMP_SUBCTA_CONTABLE_2
+                  ,@IMP_PREDETERMINADO
                )
             ;";
 
@@ -327,6 +329,8 @@ namespace SincronizadorGPS50
                command.Parameters.AddWithValue("@IMP_VALOR", entity.IMP_VALOR);
                command.Parameters.AddWithValue("@IMP_SUBCTA_CONTABLE", entity.IMP_SUBCTA_CONTABLE);
                command.Parameters.AddWithValue("@IMP_SUBCTA_CONTABLE_2", entity.IMP_SUBCTA_CONTABLE_2);
+
+               command.Parameters.AddWithValue("@IMP_PREDETERMINADO", 0);
 
                command.ExecuteNonQuery();
             }

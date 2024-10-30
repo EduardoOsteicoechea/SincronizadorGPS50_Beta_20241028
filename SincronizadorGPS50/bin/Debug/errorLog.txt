@@ -20692,3 +20692,92 @@ Message: No se puede convertir un objeto DBNull en otros tipos.
 
 
 --------------------------------------------------
+Date: 2024-10-30 08:53:10.
+Location: At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32..
+Short Description: Failed to end the methods execution successfully..
+Message: La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32.
+
+
+--------------------------------------------------
+Date: 2024-10-30 08:53:24.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsDataTableManager
+.PaintEntitiesOnDataSource:
+
+At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32.
+
+
+--------------------------------------------------
+Date: 2024-10-30 08:54:51.
+Location: At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32..
+Short Description: Failed to end the methods execution successfully..
+Message: La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32.
+
+
+--------------------------------------------------
+Date: 2024-10-30 08:55:01.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsDataTableManager
+.PaintEntitiesOnDataSource:
+
+At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32.
+
+
+--------------------------------------------------
+Date: 2024-10-30 08:55:20.
+Location: At:
+
+SincronizadorGPS50
+.EntityPainter`1
+.PaintEntityListOnDataTable:
+
+La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32..
+Short Description: Failed to end the methods execution successfully..
+Message: La cadena de entrada no tiene el formato correcto.No se puede almacenar <> en la columna Código de cliente de proyecto en Sage. El tipo esperado es Int32.
+
+
+--------------------------------------------------

@@ -1,6 +1,4 @@
-﻿using Infragistics.Designers.SqlEditor;
-using sage.ew.docventatpv;
-using sage.ew.ewbase;
+﻿using sage.ew.docventatpv;
 using sage.ew.global.Diccionarios;
 using sage.ew.global;
 using SincronizadorGPS50.Sage50Connector;
@@ -11,8 +9,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using static sage.ew.docsven.FirmaElectronica;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using sage.ew.cliente;
 using sage.ew.db;
 using sage.ew.lote.Clases;
@@ -170,7 +166,7 @@ namespace SincronizadorGPS50
          finally
          {
             Connection.Close();
-         };
+         }
       }
 
 

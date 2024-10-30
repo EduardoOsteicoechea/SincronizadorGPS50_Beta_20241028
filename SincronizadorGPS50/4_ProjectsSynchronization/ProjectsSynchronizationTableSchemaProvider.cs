@@ -24,7 +24,8 @@ namespace SincronizadorGPS50
 			/*4*/("PRY_LOCALIDAD", "Localidad", typeof(string), "VARCHAR(MAX)", string.Empty),
 			/*5*/("PRY_PROVINCIA", "Provincia", typeof(string), "VARCHAR(MAX)", string.Empty),
 			/*6*/("PRY_CP", "Código postal", typeof(string), "VARCHAR(MAX)", string.Empty),
-			/*7*/("PAR_ID_EMPRESA", "Id de participante", typeof(int), "INT", null),
+			/*7*/("PAR_ID", "Id de participante", typeof(int), "INT", null),
+			/*8*/("ProjectClientSageCode", "Código de cliente de proyecto en Sage", typeof(string), "VARCHAR(MAX)", string.Empty),
       };
       public static List<(string columnName, string friendlyName, Type columnType, string columnDefinition, dynamic defaultValue)> SageDataTuples { get; set; } = new List<(string, string, Type, string, dynamic)>()
       {
@@ -112,8 +113,10 @@ namespace SincronizadorGPS50
             GestprojectDataTuples.ElementAt(5);
 		      public (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PostalCode { get; set; } = 
             GestprojectDataTuples.ElementAt(6);
-		      public (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PAR_ID_EMPRESA { get; set; } = 
+		      public (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PAR_ID { get; set; } = 
             GestprojectDataTuples.ElementAt(7);
+		      public (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) ProjectClientSageCode { get; set; } = 
+            GestprojectDataTuples.ElementAt(8);
 
          # endregion entityGestprojectDataProperties
 

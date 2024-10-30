@@ -23,7 +23,8 @@ namespace SincronizadorGPS50
       /////////////////////
       /// Projects
       /////////////////////
-      (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PAR_ID_EMPRESA { get; set; }
+      (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) PAR_ID { get; set; }
+      (string ColumnDatabaseName, string ColumnUserFriendlyNane, Type ColumnValueType, string columnDefinition, dynamic defaultValue) ProjectClientSageCode { get; set; }
       
       /////////////////////
       /// Issued Invoice Details

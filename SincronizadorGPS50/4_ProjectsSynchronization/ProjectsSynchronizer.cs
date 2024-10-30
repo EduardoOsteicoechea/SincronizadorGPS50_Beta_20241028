@@ -1,18 +1,10 @@
-﻿using Infragistics.Designers.SqlEditor;
-using sage.ew.cliente;
-using sage.ew.db;
-using Sage.ES.S50.Modelos;
-using SincronizadorGPS50.GestprojectDataManager;
-using SincronizadorGPS50.Sage50Connector;
-using SincronizadorGPS50.Workflows.Sage50Connection;
+﻿using sage.ew.db;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using static Sage.ES.S50.S50Update.Classes.S50UpdateLog;
 
 namespace SincronizadorGPS50
 {
@@ -106,6 +98,8 @@ namespace SincronizadorGPS50
                         entity.PRY_LOCALIDAD = (reader["PRY_LOCALIDAD"] as string) ?? "";
                         entity.PRY_PROVINCIA = (reader["PRY_PROVINCIA"] as string) ?? "";
                         entity.PRY_CP = (reader["PRY_CP"] as string) ?? "";
+                        entity.PAR_ID = (reader["PAR_ID"] as int?) ?? -1;
+                        entity.ProjectClientSageCode = (reader["ProjectClientSageCode"] as string) ?? "";
                         entity.S50_CODE = (reader["S50_CODE"] as string) ?? "";
                         entity.S50_GUID_ID = (reader["S50_GUID_ID"] as string) ?? "";
                         entity.S50_COMPANY_GROUP_NAME = (reader["S50_COMPANY_GROUP_NAME"] as string) ?? "";
@@ -136,105 +130,6 @@ namespace SincronizadorGPS50
             Connection.Close();
          }
       }
-
-      public int? GetProjectCustomerId
-      (
-         SynchronizableProjectModel entity
-      )
-      {
-         try
-         {
-            Connection.Open();
-
-            string sqlString = $@"
-               SELECT 
-                  PAR_ID
-               FROM
-                  PRY_PAR_CLI
-               WHERE
-                  PRY_ID=@PRY_ID
-               ";
-
-            using(SqlCommand command = new SqlCommand(sqlString, Connection))
-            {
-               command.Parameters.AddWithValue("@PRY_ID", entity.PRY_ID);
-
-               using(SqlDataReader reader = command.ExecuteReader())
-               {
-                  while(reader.Read())
-                  {
-                     int? participantId = (reader["PAR_ID_EMPRESA"] as int?) ?? -1;
-                     return participantId;
-                  }
-               }
-            }
-
-            return -1;
-         }
-         catch(System.Exception exception)
-         {
-            throw ApplicationLogger.ReportError(
-               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
-               MethodBase.GetCurrentMethod().DeclaringType.Name,
-               MethodBase.GetCurrentMethod().Name,
-               exception
-            );
-         }
-         finally
-         {
-            Connection.Close();
-         }
-      }
-
-      public string GetProjectCustomerCodeById
-      (
-         int? id
-      )
-      {
-         try
-         {
-            Connection.Open();
-
-            string sqlString = $@"
-            SELECT 
-               S50_CODE
-            FROM
-               INT_SAGE_SINC_CLIENTES
-            WHERE
-               PAR_ID=@PAR_ID
-            ;";
-
-            using(SqlCommand command = new SqlCommand(sqlString, Connection))
-            {
-               command.Parameters.AddWithValue("@PAR_ID", id);
-
-               using(SqlDataReader reader = command.ExecuteReader())
-               {
-                  while(reader.Read())
-                  {
-                     string customerCode = (reader["S50_CODE"] as string) ?? "";
-                     return customerCode;
-                  }
-               }
-            }
-
-            return "";
-         }
-         catch(System.Exception exception)
-         {
-            throw ApplicationLogger.ReportError(
-               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
-               MethodBase.GetCurrentMethod().DeclaringType.Name,
-               MethodBase.GetCurrentMethod().Name,
-               exception
-            );
-         }
-         finally
-         {
-            Connection.Close();
-         }
-      }
-
 
       public bool ValidateIfEntityWasTransferred
       (
@@ -298,7 +193,15 @@ namespace SincronizadorGPS50
       {
          try
          {
-            string getNewEntityCode = $@" SELECT MAX(CODIGO) FROM {DB.SQLDatabase("comunes","obra")};";
+            string getNewEntityCode = $@"
+            IF EXISTS(SELECT 1 FROM {DB.SQLDatabase("comunes","obra")})
+            BEGIN
+               SELECT
+                  MAX(CODIGO)
+               FROM
+                  {DB.SQLDatabase("comunes","obra")}
+            END
+            ;";
 
             DataTable sageEntityDataTable = new DataTable();
 
@@ -344,14 +247,6 @@ namespace SincronizadorGPS50
       {
          try
          {
-            //Obra sageEntity = new sage.ew.cliente.Obra();
-            //sageEntity._Codigo = newSageEntityCode ?? "";
-            //sageEntity._Nombre = entity.PRY_NOMBRE ?? "";
-            //sageEntity._Direccion = entity.PRY_DIRECCION ?? "";
-            //sageEntity._Codpost = entity.PRY_CP ?? "";
-            //sageEntity._Poblacion = entity.PRY_LOCALIDAD ?? "";
-            //sageEntity._Provincia = entity.PRY_PROVINCIA ?? "";
-
             ProjectEntityForSageCreation projectEntityForSageCreation = new ProjectEntityForSageCreation();
             projectEntityForSageCreation.codigo = newSageEntityCode ?? "";
             projectEntityForSageCreation.nombre = entity.PRY_NOMBRE ?? "";
@@ -359,17 +254,13 @@ namespace SincronizadorGPS50
             projectEntityForSageCreation.poblacion = entity.PRY_LOCALIDAD ?? "";
             projectEntityForSageCreation.provincia = entity.PRY_PROVINCIA ?? "";
             projectEntityForSageCreation.codpos = entity.PRY_CP ?? "";
-            //int? customerId = GetProjectCustomerId(entity);
-            //projectEntityForSageCreation.cliente = GetProjectCustomerCodeById(customerId);
+            projectEntityForSageCreation.cliente = entity.ProjectClientSageCode;
 
             SageProjectBussinessClass sageProjectBussinessClass = new SageProjectBussinessClass();
             sageProjectBussinessClass._Create(projectEntityForSageCreation);
 
-            //if(sageEntity._Save())
             if(sageProjectBussinessClass._Create(projectEntityForSageCreation))
             {
-               //entity.S50_CODE = sageEntity._Codigo;
-               //entity.S50_GUID_ID = sageEntity._Guid_Id;
                entity.S50_CODE = sageProjectBussinessClass._oObra._Codigo;
                entity.S50_GUID_ID = sageProjectBussinessClass._oObra._Guid_Id;
             }
