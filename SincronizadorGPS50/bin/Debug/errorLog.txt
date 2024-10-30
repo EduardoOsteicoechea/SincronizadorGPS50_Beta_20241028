@@ -20666,3 +20666,29 @@ Message: Invalid object name 'INT_SAGE_SINC_PROYECTOS'.
 
 
 --------------------------------------------------
+Date: 2024-10-30 04:09:12.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsSynchronizer
+.GetNextAvailableSageEntityCode:
+
+No se puede convertir un objeto DBNull en otros tipos..
+Short Description: Failed to end the methods execution successfully..
+Message: No se puede convertir un objeto DBNull en otros tipos.
+
+
+--------------------------------------------------
+Date: 2024-10-30 04:10:27.
+Location: At:
+
+SincronizadorGPS50
+.ProjectsSynchronizer
+.GetNextAvailableSageEntityCode:
+
+No se puede convertir un objeto DBNull en otros tipos..
+Short Description: Failed to end the methods execution successfully..
+Message: No se puede convertir un objeto DBNull en otros tipos.
+
+
+--------------------------------------------------

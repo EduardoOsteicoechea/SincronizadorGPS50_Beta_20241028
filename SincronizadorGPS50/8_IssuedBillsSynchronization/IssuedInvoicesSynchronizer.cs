@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using sage.ew.cliente;
 using sage.ew.db;
 using sage.ew.lote.Clases;
+using System.Threading.Tasks;
 
 namespace SincronizadorGPS50
 {
@@ -55,7 +56,10 @@ namespace SincronizadorGPS50
                if(ValidateIfEntityWasTransferred(entity) == false)
                {
                   GetSelectedInvoiceDetailsFromSynchronizationTable(entity);
-                  GetSelectedInvoiceSageProjectCode(entity);
+
+                  //ValidateTaxName();
+
+                  //GetSelectedInvoiceSageProjectCode(entity);
                   if(CreateInvoceOnSage(entity))
                   {
                      RegisterEntitySynchronizationData(entity);
@@ -96,11 +100,19 @@ namespace SincronizadorGPS50
 
             selectedIds = selectedIds.TrimEnd(',');
 
+            //string sqlString = $@"
+            //   SELECT * FROM 
+            //      {TableSchema.TableName} 
+            //   WHERE 
+            //      ID 
+            //   IN ({selectedIds})
+            //;";
+
             string sqlString = $@"
                SELECT * FROM 
                   {TableSchema.TableName} 
                WHERE 
-                  ID 
+                  FCE_ID 
                IN ({selectedIds})
             ;";
 
@@ -385,7 +397,7 @@ namespace SincronizadorGPS50
 
             _CrearEntidad();
             _oEntidad.Cabecera.cliente = invoice.PAR_SUBCTA_CONTABLE.Trim();
-            _oEntidad.Cabecera.obra = invoice.SageProjectCode.Trim();
+            //_oEntidad.Cabecera.obra = invoice.SageProjectCode.Trim();
 
             foreach(SynchronizableIssuedInvoiceDetailModel detail in invoiceDetails)
             {
@@ -566,13 +578,14 @@ namespace SincronizadorGPS50
                         foreach(var LineaAlbaran in toAlbaven.Lineas)
                         {
                            _oLinia = _oDocVenta._AddLinea();
-
+                           
+                           _oLinia._Coste = 0;
                            _oLinia._Cuenta = LineaAlbaran.cuentaContable;
                            _oLinia._TipoIva = LineaAlbaran.tipoiva;
+
                            _oLinia._Definicion = LineaAlbaran.definicion;
                            _oLinia._Unidades = LineaAlbaran.unidades;
                            _oLinia._Precio = LineaAlbaran.precio;
-                           _oLinia._Coste = 0;
 
                            toAlbaven.Cabecera.precios = true;
 
@@ -584,13 +597,17 @@ namespace SincronizadorGPS50
                               _oLinia._Recalcular_Importe();
                            };
 
-                           if(_oLinia._Save())
-                           {
-                              if(_oLinVenDetLotes != null)
-                                 _oLinVenDetLotes._Save();
-                           }
+                           //if(_oLinia._Save())
+                           //{
+                           //   if(_oLinVenDetLotes != null)
+                           //      _oLinVenDetLotes._Save();
+                           //}
 
-                           _oLinVenDetLotes = null;
+                           //_oLinVenDetLotes = null;
+
+                           _oLinia._Save();
+
+                           Task.Delay(100);
                         }
                      }
 

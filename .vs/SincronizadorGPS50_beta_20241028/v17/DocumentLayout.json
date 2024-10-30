@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\eduar\\Documents\\work\\external\\avantleap\\berrilan\\SincronizadorGPS50_beta_20241028\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{25E8A40E-2713-403A-AE3C-762BAB892663}|SincronizadorGPS50\\SincronizadorGPS50.csproj|c:\\users\\eduar\\documents\\work\\external\\avantleap\\berrilan\\sincronizadorgps50_beta_20241028\\sincronizadorgps50\\8_issuedbillssynchronization\\issuedinvoicessynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E8A40E-2713-403A-AE3C-762BAB892663}|SincronizadorGPS50\\SincronizadorGPS50.csproj|solutionrelative:sincronizadorgps50\\8_issuedbillssynchronization\\issuedinvoicessynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:891126805:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IssuedInvoicesSynchronizer.cs",
+              "DocumentMoniker": "C:\\Users\\eduar\\Documents\\work\\external\\avantleap\\berrilan\\SincronizadorGPS50_beta_20241028\\SincronizadorGPS50\\8_IssuedBillsSynchronization\\IssuedInvoicesSynchronizer.cs",
+              "RelativeDocumentMoniker": "SincronizadorGPS50\\8_IssuedBillsSynchronization\\IssuedInvoicesSynchronizer.cs",
+              "ToolTip": "C:\\Users\\eduar\\Documents\\work\\external\\avantleap\\berrilan\\SincronizadorGPS50_beta_20241028\\SincronizadorGPS50\\8_IssuedBillsSynchronization\\IssuedInvoicesSynchronizer.cs",
+              "RelativeToolTip": "SincronizadorGPS50\\8_IssuedBillsSynchronization\\IssuedInvoicesSynchronizer.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T08:39:40.974Z",
+              "EditorCaption": ""
             }
           ]
         }

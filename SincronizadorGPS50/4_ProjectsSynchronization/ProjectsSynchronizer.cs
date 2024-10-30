@@ -148,9 +148,9 @@ namespace SincronizadorGPS50
 
             string sqlString = $@"
                SELECT 
-                  PAR_ID_EMPRESA
+                  PAR_ID
                FROM
-                  PROYECTO
+                  PRY_PAR_CLI
                WHERE
                   PRY_ID=@PRY_ID
                ";
@@ -308,7 +308,14 @@ namespace SincronizadorGPS50
 
             if(sageEntityDataTable.Rows.Count > 0)
             {
-               newSageEntityCode = (Convert.ToInt32(sageEntityDataTable.Rows[0].ItemArray[0]) + 1).ToString();
+               if(sageEntityDataTable.Rows[0].ItemArray[0].GetType() == typeof(DBNull))
+               {
+                  newSageEntityCode = "1";
+               }
+               else
+               {
+                  newSageEntityCode = (Convert.ToInt32(sageEntityDataTable.Rows[0].ItemArray[0]) + 1).ToString();
+               }
             }
             else
             {
@@ -352,8 +359,8 @@ namespace SincronizadorGPS50
             projectEntityForSageCreation.poblacion = entity.PRY_LOCALIDAD ?? "";
             projectEntityForSageCreation.provincia = entity.PRY_PROVINCIA ?? "";
             projectEntityForSageCreation.codpos = entity.PRY_CP ?? "";
-            int? customerId = GetProjectCustomerId(entity);
-            projectEntityForSageCreation.cliente = GetProjectCustomerCodeById(customerId);
+            //int? customerId = GetProjectCustomerId(entity);
+            //projectEntityForSageCreation.cliente = GetProjectCustomerCodeById(customerId);
 
             SageProjectBussinessClass sageProjectBussinessClass = new SageProjectBussinessClass();
             sageProjectBussinessClass._Create(projectEntityForSageCreation);
