@@ -16,6 +16,7 @@ namespace SincronizadorGPS50
 
         internal static UltraTab GlobalActionsTab { get; set; } = null;
         internal static UltraTab Sage50ConnectionTab { get; set; } = null;
+        internal static UltraTab ResetDataTab { get; set; } = null;
         internal static UltraTab CompaniesTab { get; set; } = null;
         internal static UltraTab CustomersTab { get; set; } = null;
         internal static UltraTab ProvidersTab { get; set; } = null;

@@ -22,12 +22,15 @@ namespace SincronizadorGPS50
                // Application Constructor
                new SynchronizationTabGenerator<GestprojectTaxModel, Sage50TaxModel>(),
 
-               // UI comon
+               // UI common
                hostTab.TabPage.Controls,
                new TabPageMainPanelTableLayoutPanelGenerator(),
                new TabPageLayoutPanelRowGenerator(),
                new MiddleRowControlsGenerator<GestprojectTaxModel, Sage50TaxModel>(),
-               new TopRowControlsGenerator<GestprojectTaxModel, Sage50TaxModel>(true, IdsToBeSelected.Synchronization),
+               new TopRowControlsGenerator<GestprojectTaxModel, Sage50TaxModel>(
+                  true, 
+                  IdsToBeSelected.Synchronization
+               ),
                new BottomRowControlsGenerator<GestprojectTaxModel, Sage50TaxModel>(),
 
                // Connectors

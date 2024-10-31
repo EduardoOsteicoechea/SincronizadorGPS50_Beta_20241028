@@ -56,6 +56,8 @@ namespace SincronizadorGPS50
                   //ValidateTaxName();
 
                   //GetSelectedInvoiceSageProjectCode(entity);
+
+                  
                   if(CreateInvoceOnSage(entity))
                   {
                      RegisterEntitySynchronizationData(entity);
@@ -95,14 +97,6 @@ namespace SincronizadorGPS50
             }
 
             selectedIds = selectedIds.TrimEnd(',');
-
-            //string sqlString = $@"
-            //   SELECT * FROM 
-            //      {TableSchema.TableName} 
-            //   WHERE 
-            //      ID 
-            //   IN ({selectedIds})
-            //;";
 
             string sqlString = $@"
                SELECT * FROM 
@@ -405,6 +399,12 @@ namespace SincronizadorGPS50
                _LinAlbaran.precio = detail.DFE_PRECIO_UNIDAD ?? 0;
                _AddObjetoLinea();
             };
+
+            //new VisualizePropertiesAndValues<IssuedInvoiceProxy>(
+            //   MethodBase.GetCurrentMethod().DeclaringType.Name + "." + MethodBase.GetCurrentMethod().Name,
+            //   "_oEntidad",
+            //   _oEntidad
+            //);
 
             llOk = _oAlbaranVenta._Create(_oEntidad);
 

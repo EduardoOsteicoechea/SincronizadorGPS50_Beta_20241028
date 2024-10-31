@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SincronizadorGPS50
@@ -42,6 +43,11 @@ namespace SincronizadorGPS50
                {
                   string newEntityCode = GetNextAvailableSageEntityCode();
 
+                  if(entity.PAR_ID == -1)
+                     entity.ProjectClientSageCode = "";
+                  else
+                     AppendClientSageCodeToEntity(entity);
+
                   TransferEntity(entity, newEntityCode);
                   RegisterTransferredEntitySageData(entity);
                }
@@ -60,6 +66,63 @@ namespace SincronizadorGPS50
                exception
             );
          };
+      }
+      
+      public void AppendClientSageCodeToEntity
+      (
+         SynchronizableProjectModel entity
+      )
+      {
+         try
+         {
+            Connection.Open();
+
+            string sqlString = $@"
+            SELECT
+               S50_CODE
+            FROM
+               INT_SAGE_SINC_CLIENTES
+            WHERE
+               PAR_ID=@PAR_ID
+            ";
+
+            using(SqlCommand command = new SqlCommand(sqlString, Connection))
+            {
+               command.Parameters.AddWithValue("@PAR_ID", entity.PAR_ID);
+
+               using(SqlDataReader reader = command.ExecuteReader())
+               {
+                  while(reader.Read())
+                  {
+                     string sageGuid = (reader["S50_CODE"] as string) ?? "";
+
+                     bool sageGuidIsEmpty = sageGuid == "";
+                     bool sageGuidIsDBNull = reader["S50_CODE"].GetType() == typeof(System.DBNull);
+
+                     if(sageGuidIsEmpty)
+                        throw new Exception("El guid del cliente en la tabla de sincronización de clientes era una cadena de texto vacía.");
+
+                     if(sageGuidIsDBNull)
+                        throw new NullReferenceException("El guid del cliente en la tabla de sincronización de clientes era nulo.");
+
+                     entity.ProjectClientSageCode = sageGuid;
+                  }
+               }
+            }
+         }
+         catch(System.Exception exception)
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
+         finally
+         {
+            Connection.Close();
+         }
       }
 
       public void GetSelectedEntities()
@@ -203,6 +266,8 @@ namespace SincronizadorGPS50
             END
             ;";
 
+            ////MessageBox.Show(getNewEntityCode);
+
             DataTable sageEntityDataTable = new DataTable();
 
             DB.SQLExec(getNewEntityCode, ref sageEntityDataTable);
@@ -226,6 +291,16 @@ namespace SincronizadorGPS50
             };
 
             newSageEntityCode = newSageEntityCode.PadLeft(5, '0');
+
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            int length = 5;
+            StringBuilder builder = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+               builder.Append(chars[random.Next(chars.Length)]);
+            }
+            newSageEntityCode = builder.ToString();
 
             return newSageEntityCode;
          }
@@ -307,6 +382,7 @@ namespace SincronizadorGPS50
                ,S50_COMPANY_GROUP_GUID_ID=@S50_COMPANY_GROUP_GUID_ID
                ,GP_USU_ID=@GP_USU_ID
                ,COMMENTS=@COMMENTS
+               ,ProjectClientSageCode=@ProjectClientSageCode
             WHERE
                ID=@ID
             ";
@@ -330,6 +406,8 @@ namespace SincronizadorGPS50
                command.Parameters.AddWithValue("@S50_COMPANY_GROUP_GUID_ID", entity.S50_COMPANY_GROUP_GUID_ID);
                command.Parameters.AddWithValue("@GP_USU_ID", entity.GP_USU_ID);
                command.Parameters.AddWithValue("@COMMENTS", entity.COMMENTS);
+
+               command.Parameters.AddWithValue("@ProjectClientSageCode", entity.ProjectClientSageCode);
 
                command.ExecuteNonQuery();
             }

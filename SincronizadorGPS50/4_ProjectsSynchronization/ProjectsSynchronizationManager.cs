@@ -23,7 +23,7 @@ namespace SincronizadorGPS50
                // Application Constructor
                new SynchronizationTabGenerator<SynchronizableProjectModel, Sage50ProjectModel>(),
 
-               // UI comon
+               // UI common
                hostTab.TabPage.Controls,
                new TabPageMainPanelTableLayoutPanelGenerator(),
                new TabPageLayoutPanelRowGenerator(),

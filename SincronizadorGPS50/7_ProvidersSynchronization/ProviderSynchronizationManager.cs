@@ -22,12 +22,15 @@ namespace SincronizadorGPS50
                // Application Constructor
                new SynchronizationTabGenerator<GestprojectProviderModel, Sage50ProviderModel>(),
 
-               // UI comon
+               // UI common
                hostTab.TabPage.Controls,
                new TabPageMainPanelTableLayoutPanelGenerator(),
                new TabPageLayoutPanelRowGenerator(),
                new MiddleRowControlsGenerator<GestprojectProviderModel, Sage50ProviderModel>(),
-               new TopRowControlsGenerator<GestprojectProviderModel, Sage50ProviderModel>(true, IdsToBeSelected.Synchronization),
+               new TopRowControlsGenerator<GestprojectProviderModel, Sage50ProviderModel>(
+                  true, 
+                  IdsToBeSelected.Synchronization
+               ),
                new BottomRowControlsGenerator<GestprojectProviderModel, Sage50ProviderModel>(),
 
                // Connectors

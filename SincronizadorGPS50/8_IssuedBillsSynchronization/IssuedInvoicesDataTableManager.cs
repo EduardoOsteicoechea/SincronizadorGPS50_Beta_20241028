@@ -143,18 +143,37 @@ namespace SincronizadorGPS50
                {
                   while(reader.Read())
                   {
-                     SynchronizableIssuedInvoiceModel entity = new SynchronizableIssuedInvoiceModel();
-                     entity.FCE_ID = (reader["FCE_ID"] as int?) ?? -1;
-                     entity.FCE_FECHA = (reader["FCE_FECHA"] as DateTime?) ?? DateTime.Now;
-                     entity.PAR_DAO_ID = (reader["PAR_DAO_ID"] as int?) ?? -1;
-                     entity.PAR_CLI_ID = (reader["PAR_CLI_ID"] as int?) ?? -1;
-                     entity.FCE_IVA_IGIC = (reader["FCE_IVA_IGIC"] as string) ?? "";
-                     entity.FCE_SUBCTA_CONTABLE = (reader["FCE_SUBCTA_CONTABLE"] as string) ?? "";
+                     string[] addmitedTaxesNames= {
+                        "IVA 0 E",
+                        "IVA 4 S",
+                        "IVA 10 R",
+                        "IVA 21 G",
+                        "IVA 4 CS",
+                        "IVA 10 CR",
+                        "IVA 21 CG",
+                        "IVA 4 ISPS",
+                        "IVA 10 ISPR",
+                        "IVA 21 ISPG",
+                        "IRPF 15"
+                     };
 
-                     SynchronizableEntities.Add(entity);
-                  };
-               };
-            };
+                     string taxName = (reader["FCE_IVA_IGIC"] as string) ?? "";
+
+                     if(addmitedTaxesNames.Contains(taxName))
+                     {
+                        SynchronizableIssuedInvoiceModel entity = new SynchronizableIssuedInvoiceModel();
+                        entity.FCE_ID = (reader["FCE_ID"] as int?) ?? -1;
+                        entity.FCE_FECHA = (reader["FCE_FECHA"] as DateTime?) ?? DateTime.Now;
+                        entity.PAR_DAO_ID = (reader["PAR_DAO_ID"] as int?) ?? -1;
+                        entity.PAR_CLI_ID = (reader["PAR_CLI_ID"] as int?) ?? -1;
+                        entity.FCE_IVA_IGIC = (reader["FCE_IVA_IGIC"] as string) ?? "";
+                        entity.FCE_SUBCTA_CONTABLE = (reader["FCE_SUBCTA_CONTABLE"] as string) ?? "";
+
+                        SynchronizableEntities.Add(entity);
+                     }
+                  }
+               }
+            }
          }
          catch(System.Exception exception)
          {

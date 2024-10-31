@@ -27,7 +27,10 @@ namespace SincronizadorGPS50
                new TabPageMainPanelTableLayoutPanelGenerator(),
                new TabPageLayoutPanelRowGenerator(),
                new MiddleRowControlsGenerator<SynchronizableCustomerModel, SageCustomerModel>(),
-               new TopRowControlsGenerator<SynchronizableCustomerModel, SageCustomerModel>(true, IdsToBeSelected.Synchronization),
+               new TopRowControlsGenerator<SynchronizableCustomerModel, SageCustomerModel>(
+                  true, 
+                  IdsToBeSelected.Synchronization
+               ),
                new BottomRowControlsGenerator<SynchronizableCustomerModel, SageCustomerModel>(),
 
                // Connectors

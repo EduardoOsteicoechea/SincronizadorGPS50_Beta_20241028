@@ -1,5 +1,9 @@
-﻿using System;
+﻿using sage.ew.db;
+using sage.ew.docscompra;
+using SincronizadorGPS50.Sage50Connector;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -42,9 +46,15 @@ namespace SincronizadorGPS50
 
             GetEntitiesFromSyncronizationTable();
             GetEntitiesDetailsFromSincronizationTable();
+            List<SageReceivedInvoiceModel> sage50ReceivedInvoiceModels = GetSageReceivedBillsBaseModels();
 
             foreach(SincronizadorGP50ReceivedInvoiceModel entity in SynchronizadorGPS50ReceivedInvoices)
             {
+               SageReceivedInvoiceModel correspondingSageEntity = 
+               sage50ReceivedInvoiceModels.FirstOrDefault(invoice => invoice.Number == entity.FCP_NUM_FACTURA.Trim());
+               //GetSageReceivedBill(correspondingSageEntity);
+               AppendUpdatedProviderIdToEntity(correspondingSageEntity,entity);
+
                if(ValidateIfSynchronizableEntityExistOnGestproject(entity) == false)
                {
                   TransferSynchronizationData(entity);
@@ -52,7 +62,9 @@ namespace SincronizadorGPS50
                }
                else
                {
-                  MessageBox.Show($"{EntityTypeNameSingularArticle.Replace(EntityTypeNameSingularArticle[0],EntityTypeNameSingularArticle[0].ToString().ToUpper()[0])} {EntityTypeNameRoot + EntityTypeNameGender} \"{entity.FCP_NUM_FACTURA.Trim()}\" de Sage50 ya fue transferida.");
+                  MessageBox.Show(
+                  $"{EntityTypeNameSingularArticle.Replace(EntityTypeNameSingularArticle[0],EntityTypeNameSingularArticle[0].ToString().ToUpper()[0])} {EntityTypeNameRoot + EntityTypeNameGender} \"{entity.FCP_NUM_FACTURA.Trim()}\" de Sage50 ya fue transferida."
+                  );
                }
             }
          }
@@ -66,6 +78,149 @@ namespace SincronizadorGPS50
             );
          }
       }
+
+      public List<SageReceivedInvoiceModel> GetSageReceivedBillsBaseModels()
+      {
+         try
+         {
+            List<SageReceivedInvoiceModel> entities = new List<SageReceivedInvoiceModel>();
+
+            string sqlString = $@"
+            SELECT 
+               empresa
+               ,numero
+               ,proveedor
+               ,guid_id
+               ,iva
+            FROM 
+               {DB.SQLDatabase("gestion","c_factucom")}
+            ;";
+
+            DataTable enentiesDataTable = new DataTable();
+            DB.SQLExec(sqlString, ref enentiesDataTable);
+
+            if(enentiesDataTable.Rows.Count > 0)
+            {
+               for(int i = 0; i < enentiesDataTable.Rows.Count; i++)
+               {
+                  DataRow row = enentiesDataTable.Rows[i];
+
+                  SageReceivedInvoiceModel entity = new SageReceivedInvoiceModel();
+
+                  entity.CompanyNumber = row.ItemArray[0].ToString().Trim();
+                  entity.Number = row.ItemArray[1].ToString().Trim();
+                  entity.ProviderCode = row.ItemArray[2].ToString().Trim();
+                  entity.GuidId = row.ItemArray[3].ToString().Trim();
+                  entity.IvaObject = row.ItemArray[4].ToString().Trim();
+
+                  entities.Add(entity);
+               };
+            };
+
+            return entities;
+         }
+         catch(System.Exception exception) 
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         };
+      }
+
+      public ewDocCompraFACTURA GetSageReceivedBill
+      (
+         SageReceivedInvoiceModel sage50ReceivedInvoiceModel
+      )
+      {
+         try
+         {
+            ConnectionActions.Sage50ConnectionManager._LoadGlobalVariables();
+            ConnectionActions.Sage50ConnectionManager._LoadEnvironmentCompany();
+
+            ewDocCompraFACTURA entity = new ewDocCompraFACTURA();
+
+            entity._Load(
+               sage50ReceivedInvoiceModel.CompanyNumber,
+               sage50ReceivedInvoiceModel.Number,
+               sage50ReceivedInvoiceModel.ProviderCode
+            );
+
+            return entity;
+         }
+         catch(System.Exception exception) 
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         };
+      }
+      public void AppendUpdatedProviderIdToEntity
+      (
+         SageReceivedInvoiceModel sage50ReceivedInvoiceModel,
+         SincronizadorGP50ReceivedInvoiceModel entityToBeUpdated
+      )
+      {
+         try
+         {
+            Connection.Open();
+
+            string sqlString = $@"
+               SELECT
+                  PAR_ID
+               FROM
+                  INT_SAGE_SINC_PROVEEDORES
+               WHERE
+                  PAR_SUBCTA_CONTABLE_2=@PAR_SUBCTA_CONTABLE_2
+            ";
+
+            using(SqlCommand command = new SqlCommand(sqlString, Connection))
+            {
+               command.Parameters.AddWithValue("@PAR_SUBCTA_CONTABLE_2",sage50ReceivedInvoiceModel.ProviderCode);
+
+               using(SqlDataReader reader = command.ExecuteReader())
+               {
+                  while(reader.Read())
+                  {
+                     entityToBeUpdated.PAR_PRO_ID = (reader["PAR_ID"] as int?) ?? -1;
+                  };
+               };
+            };
+         }
+         catch(System.Exception exception) 
+         {
+            throw ApplicationLogger.ReportError(
+               MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+               MethodBase.GetCurrentMethod().DeclaringType.Name,
+               MethodBase.GetCurrentMethod().Name,
+               exception
+            );
+         }
+         finally
+         {
+            Connection.Close();
+         };
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       public void GetEntitiesFromSyncronizationTable()
@@ -433,6 +588,12 @@ namespace SincronizadorGPS50
                ,@FCP_OBSERVACIONES
             )
             ;";
+
+            //new VisualizePropertiesAndValues<SincronizadorGP50ReceivedInvoiceModel>(
+            //   MethodBase.GetCurrentMethod().DeclaringType.Name + "." + MethodBase.GetCurrentMethod().Name,
+            //   "entity",
+            //   entity
+            //);
 
             using(SqlCommand command = new SqlCommand(sqlString, Connection))
             {

@@ -20794,3 +20794,212 @@ Message: Incorrect syntax near ';'.
 
 
 --------------------------------------------------
+Date: 2024-10-31 04:05:58.
+Location: At:
+
+SincronizadorGPS50
+.ResetApplicationDataManager
+.GenerateUI:
+
+The Controls collection of the UltraPanel is read-only. Modify the UltraPanel.ClientArea.Controls collection instead..
+Short Description: Failed to end the methods execution successfully..
+Message: The Controls collection of the UltraPanel is read-only. Modify the UltraPanel.ClientArea.Controls collection instead.
+
+
+--------------------------------------------------
+Date: 2024-10-31 05:01:19.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated..
+Short Description: Failed to end the methods execution successfully..
+Message: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated.
+
+
+--------------------------------------------------
+Date: 2024-10-31 05:02:51.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.TransferSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated.
+
+
+--------------------------------------------------
+Date: 2024-10-31 05:02:53.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.Synchronize:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.TransferSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.TransferSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated.
+
+
+--------------------------------------------------
+Date: 2024-10-31 05:02:54.
+Location: At:
+
+SincronizadorGPS50
+.DeadEndException
+..ctor:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.Synchronize:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.TransferSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.Synchronize:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.TransferSynchronizationData:
+
+At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.RecordSynchronizableEntityOnGestproject:
+
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FPR_PRO_PAR". The conflict occurred in database "GESTPROJECT2020", table "dbo.PARTICIPANTE", column 'PAR_ID'.
+The statement has been terminated.
+
+
+--------------------------------------------------
+Date: 2024-10-31 05:47:09.
+Location: At:
+
+SincronizadorGPS50
+.DeadEndException
+..ctor:
+
+No hay constructor sin parámetros definido para este objeto..
+Short Description: Failed to end the methods execution successfully..
+Message: No hay constructor sin parámetros definido para este objeto.
+
+
+--------------------------------------------------
+Date: 2024-10-31 08:04:39.
+Location: At:
+
+SincronizadorGPS50
+.ReceivedBillsSynchronizer
+.AppendUpdatedProviderIdToEntity:
+
+Referencia a objeto no establecida como instancia de un objeto..
+Short Description: Failed to end the methods execution successfully..
+Message: Referencia a objeto no establecida como instancia de un objeto.
+
+
+--------------------------------------------------
+Date: 2024-10-31 09:36:05.
+Location: At:
+
+SincronizadorGPS50
+.IssuedInvoicesDataTableManager
+.GetSynchronizableIssuedBillSageTaxCode:
+
+Invalid object name 'INT_SAGE_SINC_IMPUESTOS'..
+Short Description: Failed to end the methods execution successfully..
+Message: Invalid object name 'INT_SAGE_SINC_IMPUESTOS'.
+
+
+--------------------------------------------------
+Date: 2024-10-31 09:36:13.
+Location: At:
+
+SincronizadorGPS50
+.IssuedInvoicesDataTableManager
+.GenerateDataTable:
+
+At:
+
+SincronizadorGPS50
+.IssuedInvoicesDataTableManager
+.GetSynchronizableIssuedBillSageTaxCode:
+
+Invalid object name 'INT_SAGE_SINC_IMPUESTOS'..
+Short Description: Failed to end the methods execution successfully..
+Message: At:
+
+SincronizadorGPS50
+.IssuedInvoicesDataTableManager
+.GetSynchronizableIssuedBillSageTaxCode:
+
+Invalid object name 'INT_SAGE_SINC_IMPUESTOS'.
+
+
+--------------------------------------------------

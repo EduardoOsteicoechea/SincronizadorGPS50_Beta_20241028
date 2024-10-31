@@ -306,10 +306,10 @@ namespace SincronizadorGPS50
          {
             AppendGestprojectClientIdOnGestprojectToEntity(entity);
 
-            if(entity.PAR_ID == -1)
-               entity.ProjectClientSageCode = "";
-            else
-               AppendClientSageCodeToEntity(entity);
+            //if(entity.PAR_ID == -1)
+            //   entity.ProjectClientSageCode = "";
+            //else
+            //   AppendClientSageCodeToEntity(entity);
 
             RegisterEntityOnSynchronizationTable(entity);
          }

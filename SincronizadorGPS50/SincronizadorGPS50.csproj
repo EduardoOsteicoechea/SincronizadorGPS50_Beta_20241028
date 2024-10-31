@@ -388,8 +388,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="0_Setup\MainWindow.cs" />
-    <Compile Include="1_Connection\ConnectionTab.cs" />
+    <Compile Include="00_Setup\MainWindow.cs" />
+    <Compile Include="10_ResetData\ResetApplicationDataManager.cs" />
+    <Compile Include="01_Connection\ConnectionTab.cs" />
     <Compile Include="2_CompaniesSynchronization\CompaniesDataTableManager.cs" />
     <Compile Include="2_CompaniesSynchronization\CompaniesSynchronizer.cs" />
     <Compile Include="2_CompaniesSynchronization\SynchronizableCompanyModel.cs" />
@@ -434,8 +435,8 @@
     <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy %282%29.cs" />
     <Compile Include="6_TaxesSynchronization\_prev\1_TaxesDataTableManager - Copy.cs" />
     <Compile Include="6_TaxesSynchronization\_prev\EntitySynchronizers\TaxSynchronizationWorkflow - Copy.cs" />
-    <Compile Include="5_SubaccountableAccountsSynchronization\1_SubaccountableAccountsDataTableManager.cs" />
-    <Compile Include="5_SubaccountableAccountsSynchronization\2_GestprojectSubaccountableAccountsProcessor.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\SubaccountableAccountsDataTableManager.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\GestprojectSubaccountableAccountsProcessor.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GestprojectSubaccountableAccountsManager - Copy.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GetGestprojectSubaccountableAccounts.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntityProviders\GestprojectSubaccountableAccountsProvider.cs" />
@@ -447,7 +448,7 @@
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\InsertSageEntityIntoGestprojectSubaccountableAccountTable - Copy.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\DeleteSubaccountableAccountTemporalRegistry.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\InsertSubaccountableAccount.cs" />
-    <Compile Include="5_SubaccountableAccountsSynchronization\3_SubaccountableAccountSynchronizer.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\SubaccountableAccountSynchronizer.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\SubaccountableAccountSynchronizationWorkflow.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\UpdateGestprojectSubaccountableAccountDataWithSageData.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\EntitySynchronizers\UpdateSubaccountableAccount.cs" />
@@ -456,7 +457,7 @@
     <Compile Include="5_SubaccountableAccountsSynchronization\Schema\GestprojectSubaccountableAccountModel.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\Schema\Sage50SubaccountableAccountModel.cs" />
     <Compile Include="5_SubaccountableAccountsSynchronization\Schema\SubaccountableAccountsSynchronizationTableSchemaProvider.cs" />
-    <Compile Include="5_SubaccountableAccountsSynchronization\_SubaccountableAccountsSynchronizationManager.cs" />
+    <Compile Include="5_SubaccountableAccountsSynchronization\SubaccountableAccountsSynchronizationManager.cs" />
     <Compile Include="8_IssuedBillsSynchronization\_prev\3_IssuedBillsSynchronizer - Copy.cs" />
     <Compile Include="8_IssuedBillsSynchronization\IssuedInvoiceProxy.cs" />
     <Compile Include="8_IssuedBillsSynchronization\_prev\SalesAlbaran - Copy.cs" />

@@ -1,6 +1,8 @@
 ﻿using Infragistics.Win.Misc;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinLiveTileView;
+using Infragistics.Win.UltraWinTabControl;
+using SincronizadorGPS50.Workflows.Sage50Connection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -23,11 +25,21 @@ namespace SincronizadorGPS50
       public IEntitySynchronizer<T1, T2> EntitySynchronizer { get; set; }
       public bool SincronizationButtonDisabled { get; set; } = true;
       public string IdToBeSelected { get; set; } = "";
+      IEntitySynchronizationManager TabToUpdate1 { get; set; } = null;
+      UltraTab TabToUpdateHostTab { get; set; } = null;
 
-      public TopRowControlsGenerator(bool sincronizationButtonDisabled = true, string idToBeSelected = "")
+      public TopRowControlsGenerator
+      (
+         bool sincronizationButtonDisabled = true,
+         string idToBeSelected = "",
+         IEntitySynchronizationManager tabToUpdateSyncronizationManager1 = null,
+         UltraTab tabToUpdateHostTab = null
+      )
       {
          SincronizationButtonDisabled = sincronizationButtonDisabled;
          IdToBeSelected = idToBeSelected;
+         TabToUpdate1 = tabToUpdateSyncronizationManager1;
+         TabToUpdateHostTab = tabToUpdateHostTab;
       }
 
       public void GenerateControls
@@ -149,8 +161,15 @@ namespace SincronizadorGPS50
             );
 
             ManageUserInteractionWithUI.RefreshTable(MiddleRowGrid, dataTable);
+
+            if(TabToUpdate1 != null)
+            {
+               Type synchronizationManagerType = TabToUpdate1.GetType();
+               IEntitySynchronizationManager synchronizationManager = (IEntitySynchronizationManager)Activator.CreateInstance(synchronizationManagerType);
+               synchronizationManager.Launch(GestprojectConnectionManager, Sage50ConnectionManager, MainWindowUIHolder.ReceivedBillsTab);
+            }
          }
-         catch (System.Exception exception)
+         catch(System.Exception exception)
          {
             new DeadEndException(exception);
          };
